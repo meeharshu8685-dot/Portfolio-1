@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { SpiderIcon } from './Icons';
 
@@ -10,8 +11,10 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onAboutClick, onProjectsClick, onContactClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
@@ -33,7 +36,7 @@ export const Header: React.FC<HeaderProps> = ({ onAboutClick, onProjectsClick, o
   );
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-black/80 backdrop-blur-sm shadow-lg' : 'bg-transparent'}`}>
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-black/80 backdrop-blur-sm shadow-lg' : 'bg-transparent'} ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full'}`}>
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="relative">
           <a href="#" className="text-2xl font-black uppercase tracking-tighter">H.</a>

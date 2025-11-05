@@ -4,6 +4,20 @@ import { GithubIcon, LinkedinIcon, InstagramIcon, CodeWithHarryIcon, TharunNaikI
 
 export const PROJECTS: Project[] = [
   {
+    title: 'Zenith Finance & Task Manager',
+    description: 'A comprehensive dashboard to manage your tasks and expenses, view analytics.',
+    imageUrl: 'https://picsum.photos/seed/zenith-finance/1000/800',
+    tags: ['React', 'Dashboard', 'Finance', 'Task Management', 'Analytics'],
+    liveUrl: 'https://task-and-finance-manage.vercel.app/',
+  },
+  {
+    title: 'ReflexAI Code Reviewer',
+    description: 'An intelligent assistant that analyzes code snippets using the Gemini API to provide feedback on quality, identify bugs, and suggest optimizations.',
+    imageUrl: 'https://picsum.photos/seed/reflexai/1000/800',
+    tags: ['React', 'Gemini API', 'AI/ML', 'Node.js', 'Tailwind CSS'],
+    repoUrl: 'https://github.com/meeharshu8685-dot/reflex-ai-code-reviewer',
+  },
+  {
     title: 'Project Zenith',
     description: 'An interactive data visualization platform for tracking market trends, built with React and D3.js.',
     imageUrl: 'https://picsum.photos/seed/project1/1000/800',

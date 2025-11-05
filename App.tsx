@@ -13,6 +13,11 @@ const App: React.FC = () => {
   const contactRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
   const [skillsVisible, setSkillsVisible] = useState(false);
+  const [heroAnimated, setHeroAnimated] = useState(false);
+
+  useEffect(() => {
+    setHeroAnimated(true);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -60,27 +65,27 @@ const App: React.FC = () => {
       <main>
         {/* Hero Section */}
         <section className="h-screen w-full relative flex flex-col items-center justify-center text-center text-white overflow-hidden">
-          <div className="absolute inset-0 bg-black/60 z-0"></div>
+          <div className={`absolute inset-0 bg-black transition-opacity duration-1000 ease-in-out z-0 ${heroAnimated ? 'opacity-60' : 'opacity-80'}`}></div>
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="hero-video"
+            className={`hero-video transition-opacity duration-1000 ease-in-out ${heroAnimated ? 'opacity-100' : 'opacity-0'}`}
             poster="https://picsum.photos/seed/hero/1920/1080"
           >
             <source src="https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4" type="video/mp4" />
           </video>
           <div className="relative z-10 px-4">
-            <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-none">
+            <h1 className={`text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-none transition-all duration-700 ease-out ${heroAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               Harshu
             </h1>
-            <p className="mt-4 text-xl md:text-3xl font-semibold text-neutral-300">
+            <p className={`mt-4 text-xl md:text-3xl font-semibold text-neutral-300 transition-all duration-700 ease-out delay-200 ${heroAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               Innovate. Create. Develop.
             </p>
             <button
               onClick={() => scrollTo(projectsRef)}
-              className="mt-8 px-8 py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-neutral-300 transition-colors duration-300 flex items-center justify-center mx-auto"
+              className={`mt-8 px-8 py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-neutral-300 flex items-center justify-center mx-auto transition-all duration-700 ease-out delay-400 ${heroAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             >
               View Work <ArrowDownIcon className="ml-2" />
             </button>
