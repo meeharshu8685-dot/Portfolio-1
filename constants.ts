@@ -4,6 +4,13 @@ import { GithubIcon, LinkedinIcon, InstagramIcon, CodeWithHarryIcon, TharunNaikI
 
 export const PROJECTS: Project[] = [
   {
+    title: 'NotesNest – Personal Notes & Resource Hub',
+    description: 'A modern and interactive web-based platform designed to organize, manage, and showcase college study materials in a visually appealing and accessible way. It serves as a centralized hub where a student can store, categorize, and share subject-wise notes, PDFs, and learning resources — integrated directly with Google Drive links.',
+    imageUrl: 'https://picsum.photos/seed/notes-nest/1000/800',
+    tags: ['React', 'Web App', 'Education', 'Google Drive', 'Resource Hub'],
+    liveUrl: 'https://notes-nest-weld.vercel.app/',
+  },
+  {
     title: 'Zenith Finance & Task Manager',
     description: 'A comprehensive dashboard to manage your tasks and expenses, view analytics.',
     imageUrl: 'https://picsum.photos/seed/zenith-finance/1000/800',
