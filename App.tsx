@@ -136,9 +136,8 @@ const App: React.FC = () => {
           </div>
           <div className="text-center mt-16 max-w-3xl mx-auto">
             <div className="border-t border-neutral-800 pt-8">
-                <p className="text-lg md:text-xl text-neutral-300">
-                <span className="text-2xl mr-2">💡</span>
-                <span className="font-bold">Personal Motto:</span> "Keep it simple. Learn deeply. Go with the flow." 🌊
+                <p className="text-lg md:text-xl text-neutral-400 italic">
+                  "Keep it simple. Learn deeply. Go with the flow." 🌊
                 </p>
             </div>
           </div>
