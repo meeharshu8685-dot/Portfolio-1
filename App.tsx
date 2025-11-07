@@ -6,6 +6,7 @@ import { ProjectCard } from './components/ProjectCard';
 import { SocialIcons } from './components/SocialIcons';
 import { PROJECTS, SKILL_CATEGORIES, SOCIAL_LINKS, INSPIRATIONS, GEAR_CATEGORIES } from './constants';
 import { ArrowDownIcon, MailIcon } from './components/Icons';
+import { ShuffleText } from './components/ShuffleText';
 
 const App: React.FC = () => {
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -16,6 +17,8 @@ const App: React.FC = () => {
   const [heroAnimated, setHeroAnimated] = useState(false);
   const [isGearSectionOpen, setIsGearSectionOpen] = useState(false);
   const [isSparksSectionOpen, setIsSparksSectionOpen] = useState(false);
+  const [isButtonShuffling, setIsButtonShuffling] = useState(true);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   useEffect(() => {
     setHeroAnimated(true);
@@ -56,6 +59,19 @@ const App: React.FC = () => {
     window.location.href = `mailto:meeharshu8686@gmail.com?subject=Hello from your portfolio!`;
   };
 
+  const handleViewWorkClick = () => {
+    scrollTo(projectsRef);
+    setIsButtonClicked(true);
+    setIsButtonShuffling(false);
+  };
+
+  const handleButtonMouseLeave = () => {
+    if (!isButtonClicked) {
+      setIsButtonShuffling(true);
+    }
+  };
+
+
   return (
     <div className="bg-[#111111] text-neutral-200">
       <Header
@@ -86,10 +102,12 @@ const App: React.FC = () => {
               Innovate. Create. Develop.
             </p>
             <button
-              onClick={() => scrollTo(projectsRef)}
+              onClick={handleViewWorkClick}
+              onMouseEnter={() => setIsButtonShuffling(false)}
+              onMouseLeave={handleButtonMouseLeave}
               className={`mt-8 px-8 py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-neutral-300 flex items-center justify-center mx-auto transition-all duration-700 ease-out delay-400 ${heroAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             >
-              View Work <ArrowDownIcon className="ml-2" />
+              <ShuffleText text="View Work" isShuffling={isButtonShuffling} /> <ArrowDownIcon className="ml-2" />
             </button>
           </div>
         </section>
