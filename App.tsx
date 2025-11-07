@@ -320,7 +320,7 @@ const App: React.FC = () => {
                     </div>
                 </div>
             </div>
-        </Section>
+        </section>
       </main>
 
       {/* Footer */}
