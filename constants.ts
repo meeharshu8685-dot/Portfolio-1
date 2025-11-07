@@ -83,12 +83,12 @@ export const GEAR_CATEGORIES: GearCategory[] = [
     {
         icon: MonitorIcon,
         title: 'Main Setup',
-        items: ['MacBook Air M1', 'Lenovo ThinkVision T32h', 'Lenovo Thinkpad C13 Yoga', 'Sony arcrux'],
+        items: ['MacBook Air M1', 'Lenovo ThinkVision T32h', 'Lenovo Thinkpad C13 Yoga', 'Samsung S24', 'Oneplus 7t'],
     },
     {
         icon: KeyboardIcon,
         title: 'Peripherals',
-        items: ['Keychron K2 Keyboard', 'Logitech MX Master 3S', 'Sony WH-1000XM4'],
+        items: ['Keychron K2 Keyboard', 'Logitech MX Master 3S', 'Sony WH-1000XM4', 'Sony arcrux'],
     },
     {
         icon: ToolsIcon,

@@ -36,6 +36,35 @@
           transform: rotateZ(8deg);
         }
       }
+
+      /* SVG Draw Animation */
+      .draw-icon > * {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+      }
+
+      .section-is-visible .draw-icon > * {
+        animation: draw-stroke 1.5s cubic-bezier(0.45, 0, 0.55, 1) forwards;
+      }
+
+      @keyframes draw-stroke {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      /* Staggering Delays for Toolkit Section */
+      .skills-section-container.section-is-visible .skill-card:nth-child(1) .draw-icon > * { animation-delay: 0.4s; }
+      .skills-section-container.section-is-visible .skill-card:nth-child(2) .draw-icon > * { animation-delay: 0.55s; }
+      .skills-section-container.section-is-visible .skill-card:nth-child(3) .draw-icon > * { animation-delay: 0.7s; }
+      .skills-section-container.section-is-visible .skill-card:nth-child(4) .draw-icon > * { animation-delay: 0.85s; }
+      .skills-section-container.section-is-visible .skill-card:nth-child(5) .draw-icon > * { animation-delay: 1.0s; }
+
+      /* Staggering Delays for Gear Section */
+      .gear-section-container.section-is-visible .gear-card:nth-child(1) .draw-icon > * { animation-delay: 0.4s; }
+      .gear-section-container.section-is-visible .gear-card:nth-child(2) .draw-icon > * { animation-delay: 0.55s; }
+      .gear-section-container.section-is-visible .gear-card:nth-child(3) .draw-icon > * { animation-delay: 0.7s; }
+      .gear-section-container.section-is-visible .gear-card:nth-child(4) .draw-icon > * { animation-delay: 0.85s; }
     </style>
   <script type="importmap">
 {

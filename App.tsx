@@ -13,41 +13,88 @@ const App: React.FC = () => {
   const projectsRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
+  const philosophyRef = useRef<HTMLDivElement>(null);
+  const gearRef = useRef<HTMLDivElement>(null);
+
   const [skillsVisible, setSkillsVisible] = useState(false);
+  const [philosophyVisible, setPhilosophyVisible] = useState(false);
+  const [projectsVisible, setProjectsVisible] = useState(false);
+  const [contactVisible, setContactVisible] = useState(false);
+  const [gearVisible, setGearVisible] = useState(false);
+  
   const [heroAnimated, setHeroAnimated] = useState(false);
   const [isGearSectionOpen, setIsGearSectionOpen] = useState(false);
   const [isSparksSectionOpen, setIsSparksSectionOpen] = useState(false);
   const [isButtonShuffling, setIsButtonShuffling] = useState(true);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [isHarshuShuffling, setIsHarshuShuffling] = useState(false);
 
   useEffect(() => {
     setHeroAnimated(true);
   }, []);
 
   useEffect(() => {
+    const shuffleDuration = 5000; // 5 seconds of shuffling
+    const pauseDuration = 10000; // 10 seconds of pause
+    const cycleDuration = shuffleDuration + pauseDuration;
+
+    let timeoutId: number;
+    let intervalId: number;
+
+    const shuffleCycle = () => {
+      setIsHarshuShuffling(true);
+      timeoutId = window.setTimeout(() => {
+        setIsHarshuShuffling(false);
+      }, shuffleDuration);
+    };
+    
+    // Delay the start to sync better with hero animation
+    const startDelay = setTimeout(() => {
+        shuffleCycle();
+        intervalId = window.setInterval(shuffleCycle, cycleDuration);
+    }, 700);
+
+    return () => {
+      clearTimeout(startDelay);
+      clearTimeout(timeoutId);
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setSkillsVisible(true);
-          observer.unobserve(entry.target);
-        }
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (entry.target === skillsRef.current) setSkillsVisible(true);
+            if (entry.target === philosophyRef.current) setPhilosophyVisible(true);
+            if (entry.target === projectsRef.current) setProjectsVisible(true);
+            if (entry.target === contactRef.current) setContactVisible(true);
+            if (entry.target === gearRef.current) setGearVisible(true);
+            observer.unobserve(entry.target);
+          }
+        });
       },
       {
         root: null,
         rootMargin: '0px',
-        threshold: 0.1, // Trigger when 10% is visible
+        threshold: 0.1,
       }
     );
 
-    const currentSkillsRef = skillsRef.current;
-    if (currentSkillsRef) {
-      observer.observe(currentSkillsRef);
-    }
+    const refs = [skillsRef, philosophyRef, projectsRef, contactRef, gearRef];
+    refs.forEach(ref => {
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+    });
 
     return () => {
-      if (currentSkillsRef) {
-        observer.unobserve(currentSkillsRef);
-      }
+      refs.forEach(ref => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      });
     };
   }, []);
 
@@ -96,7 +143,7 @@ const App: React.FC = () => {
           </video>
           <div className="relative z-10 px-4">
             <h1 className={`text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-none transition-all duration-700 ease-out ${heroAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              Harshu
+              <ShuffleText text="Harshu" isShuffling={isHarshuShuffling} shuffleInterval={200} shuffleProbability={0.03} />
             </h1>
             <p className={`mt-4 text-xl md:text-3xl font-semibold text-neutral-300 transition-all duration-700 ease-out delay-200 ${heroAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               Innovate. Create. Develop.
@@ -133,13 +180,13 @@ const App: React.FC = () => {
         </Section>
         
         {/* Skills Section */}
-        <Section title="My Toolkit">
-          <div ref={skillsRef} className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Section ref={skillsRef} title="My Toolkit">
+          <div className={`max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8 skills-section-container ${skillsVisible ? 'section-is-visible' : ''}`}>
             {SKILL_CATEGORIES.map((category, index) => (
               <div 
                 key={category.title} 
-                className={`bg-neutral-900 border border-neutral-800 p-6 rounded-lg flex flex-col h-full hover:border-neutral-700 transition-all duration-500 ease-out ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-                style={{ transitionDelay: `${index * 100}ms` }}
+                className={`skill-card bg-neutral-900 border border-neutral-800 p-6 rounded-lg flex flex-col h-full hover:border-neutral-700 transition-all duration-700 ease-out ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
               >
                 <h3 className="text-xl font-bold mb-4 flex items-center text-white">
                   <category.icon className="w-6 h-6 mr-3 text-neutral-400" />
@@ -157,23 +204,28 @@ const App: React.FC = () => {
         </Section>
         
         {/* Philosophy Section */}
-        <Section title="My Philosophy">
+        <Section ref={philosophyRef} title="My Philosophy">
             <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-12 text-center">
-                <div className="flex flex-col items-center">
-                    <span className="text-5xl font-black text-neutral-700 mb-2">01</span>
-                    <h3 className="text-2xl font-bold text-white mb-2">Simplicity First</h3>
-                    <p className="text-neutral-400">Aiming for clean, elegant solutions. Because the most powerful ideas are often the simplest.</p>
-                </div>
-                <div className="flex flex-col items-center">
-                    <span className="text-5xl font-black text-neutral-700 mb-2">02</span>
-                    <h3 className="text-2xl font-bold text-white mb-2">Curiosity Driven</h3>
-                    <p className="text-neutral-400">Embracing the "why" and "what if." Every project is a new world to explore and learn from.</p>
-                </div>
-                <div className="flex flex-col items-center">
-                    <span className="text-5xl font-black text-neutral-700 mb-2">03</span>
-                    <h3 className="text-2xl font-bold text-white mb-2">Flow & Focus</h3>
-                    <p className="text-neutral-400">Adapting to challenges while staying grounded in the goal. It's about progress, not perfection.</p>
-                </div>
+                {[{
+                    title: "Simplicity First",
+                    description: "Aiming for clean, elegant solutions. Because the most powerful ideas are often the simplest."
+                }, {
+                    title: "Curiosity Driven",
+                    description: "Embracing the \"why\" and \"what if.\" Every project is a new world to explore and learn from."
+                }, {
+                    title: "Flow & Focus",
+                    description: "Adapting to challenges while staying grounded in the goal. It's about progress, not perfection."
+                }].map((item, index) => (
+                    <div 
+                      key={item.title} 
+                      className={`flex flex-col items-center transition-all duration-700 ease-out ${philosophyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                      style={{ transitionDelay: `${index * 150}ms` }}
+                    >
+                        <span className="text-5xl font-black text-neutral-700 mb-2">0{index + 1}</span>
+                        <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
+                        <p className="text-neutral-400">{item.description}</p>
+                    </div>
+                ))}
             </div>
         </Section>
 
@@ -203,21 +255,28 @@ const App: React.FC = () => {
         <Section ref={projectsRef} id="projects" title="Selected Work">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
             {PROJECTS.map((project, index) => (
-              <ProjectCard key={index} project={project} />
+               <div
+                  key={index}
+                  className={`transition-all duration-700 ease-out ${projectsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+                  style={{ transitionDelay: `${index * 150}ms` }}
+                >
+                  <ProjectCard project={project} />
+                </div>
             ))}
           </div>
         </Section>
 
         {/* Gear Section */}
         <Section 
+          ref={gearRef}
           title="My Gear"
           isCollapsible={true}
           isOpen={isGearSectionOpen}
           onTitleClick={() => setIsGearSectionOpen(!isGearSectionOpen)}
         >
-          <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {GEAR_CATEGORIES.map((category) => (
-              <div key={category.title} className="bg-neutral-900 border border-neutral-800 p-6 rounded-lg text-center flex flex-col items-center hover:border-neutral-700 transition-colors duration-300">
+          <div className={`max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 gear-section-container ${gearVisible ? 'section-is-visible' : ''}`}>
+            {GEAR_CATEGORIES.map((category, index) => (
+              <div key={category.title} className={`gear-card bg-neutral-900 border border-neutral-800 p-6 rounded-lg text-center flex flex-col items-center hover:border-neutral-700 transition-all duration-700 ease-out ${gearVisible ? 'opacity-100' : 'opacity-0'}`} style={{transitionDelay: `${index * 150}ms`}}>
                 <category.icon className="w-10 h-10 mb-4 text-neutral-400" />
                 <h3 className="text-lg font-bold text-white mb-3">{category.title}</h3>
                 <ul className="text-neutral-400 text-sm space-y-1 list-none p-0">
@@ -236,17 +295,17 @@ const App: React.FC = () => {
         {/* Contact Section */}
         <Section ref={contactRef} id="contact" title="Connect With Me">
             <div className="text-center max-w-2xl mx-auto">
-                <p className="text-xl text-neutral-300 mb-8">
+                <p className={`text-xl text-neutral-300 mb-8 transition-all duration-700 ease-out ${contactVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                     I'm currently seeking new opportunities and I'm always open to a chat. Whether you have a question, a project idea, or just want to say hi, feel free to reach out!
                 </p>
                 <button
                     onClick={handleEmailClick}
-                    className="inline-flex items-center justify-center text-xl font-bold text-black bg-white px-10 py-5 group transition-all duration-300 hover:scale-105"
+                    className={`inline-flex items-center justify-center text-xl font-bold text-black bg-white px-10 py-5 group transition-all duration-700 ease-out hover:scale-105 ${contactVisible ? 'opacity-100 translate-y-0 delay-150' : 'opacity-0 translate-y-8'}`}
                 >
                     <MailIcon className="mr-3 text-black" />
                     Say Hello
                 </button>
-                 <div className="mt-8 text-neutral-400">
+                 <div className={`mt-8 text-neutral-400 transition-all duration-700 ease-out ${contactVisible ? 'opacity-100 translate-y-0 delay-300' : 'opacity-0 translate-y-8'}`}>
                     <p>Or reach out directly:</p>
                     <div className="mt-2 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
                         <a href="mailto:meeharshu8686@gmail.com" className="font-semibold text-neutral-200 hover:text-white transition-colors">meeharshu8686@gmail.com</a>
@@ -254,7 +313,7 @@ const App: React.FC = () => {
                         <a href="mailto:iykharshu8685@gmail.com" className="font-semibold text-neutral-200 hover:text-white transition-colors">iykharshu8685@gmail.com</a>
                     </div>
                 </div>
-                <div className="mt-12">
+                <div className={`mt-12 transition-all duration-700 ease-out ${contactVisible ? 'opacity-100 translate-y-0 delay-[450ms]' : 'opacity-0 translate-y-8'}`}>
                     <p className="text-neutral-400 mb-6">You can also find me on:</p>
                     <div className="flex justify-center">
                          <SocialIcons links={SOCIAL_LINKS} iconClassName="w-8 h-8" />

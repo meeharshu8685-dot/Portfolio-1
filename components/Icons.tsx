@@ -52,14 +52,14 @@ export const TharunNaikIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export const LanguagesIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props} className={`draw-icon ${props.className || ''}`}>
         <path d="M4 17l6-6-6-6"/>
         <path d="M12 19h8"/>
     </svg>
 );
 
 export const AiIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props} className={`draw-icon ${props.className || ''}`}>
         <path d="M12 8V4H8" />
         <rect x="4" y="4" width="16" height="16" rx="2" />
         <path d="M12 12h4" />
@@ -72,7 +72,7 @@ export const AiIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export const ToolsIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props} className={`draw-icon ${props.className || ''}`}>
         <path d="M21.7 18.9c.4-1.5.2-3.1-.7-4.4l-3.3-3.3c-.6-.6-1.5-.6-2.1 0l-1.4 1.4c-.6.6-.6 1.5 0 2.1l3.3 3.3c1.3 1 2.9 1.2 4.4.7z" />
         <path d="M15 7l-1.4-1.4c-.6-.6-1.5-.6-2.1 0L2.3 14.8c-.6.6-.6 1.5 0 2.1l3.3 3.3c.6.6 1.5.6 2.1 0l8.8-8.8" />
         <path d="m18 11 2 2" />
@@ -81,14 +81,14 @@ export const ToolsIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export const ExploringIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props} className={`draw-icon ${props.className || ''}`}>
         <path d="M22 2 11 13" />
         <path d="M22 2 15 22 11 13 2 9l20-7Z" />
     </svg>
 );
 
 export const SoftSkillsIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props} className={`draw-icon ${props.className || ''}`}>
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
     </svg>
 );
@@ -105,13 +105,13 @@ export const SpiderIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export const MonitorIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props} className={`draw-icon ${props.className || ''}`}><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
 );
 
 export const KeyboardIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect><line x1="7" y1="9" x2="7.01" y2="9"></line><line x1="12" y1="9" x2="12.01" y2="9"></line><line x1="17" y1="9" x2="17.01" y2="9"></line><line x1="7" y1="14" x2="7.01" y2="14"></line><line x1="12" y1="14" x2="17" y2="14"></line></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props} className={`draw-icon ${props.className || ''}`}><rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect><line x1="7" y1="9" x2="7.01" y2="9"></line><line x1="12" y1="9" x2="12.01" y2="9"></line><line x1="17" y1="9" x2="17.01" y2="9"></line><line x1="7" y1="14" x2="7.01" y2="14"></line><line x1="12" y1="14" x2="17" y2="14"></line></svg>
 );
 
 export const BrainCircuitIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M12 2a5.5 5.5 0 0 0-5.5 5.5c0 1 .2 2 .5 3"></path><path d="M12 2a5.5 5.5 0 0 1 5.5 5.5c0 1-.2 2-.5 3"></path><path d="M5 8c-1.5 1-2.5 2.5-3 4.5"></path><path d="M19 8c1.5 1 2.5 2.5 3 4.5"></path><path d="M12 12.5a4.5 4.5 0 0 0-4.5 4.5v.5a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-.5a4.5 4.5 0 0 0-4.5-4.5z"></path><path d="M15 13h-3a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h3"></path><path d="M12 9.5v-2"></path><path d="M10 17.5v-2"></path><path d="M14 17.5v-2"></path></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props} className={`draw-icon ${props.className || ''}`}><path d="M12 2a5.5 5.5 0 0 0-5.5 5.5c0 1 .2 2 .5 3"></path><path d="M12 2a5.5 5.5 0 0 1 5.5 5.5c0 1-.2 2-.5 3"></path><path d="M5 8c-1.5 1-2.5 2.5-3 4.5"></path><path d="M19 8c1.5 1 2.5 2.5 3 4.5"></path><path d="M12 12.5a4.5 4.5 0 0 0-4.5 4.5v.5a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-.5a4.5 4.5 0 0 0-4.5-4.5z"></path><path d="M15 13h-3a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h3"></path><path d="M12 9.5v-2"></path><path d="M10 17.5v-2"></path><path d="M14 17.5v-2"></path></svg>
 );

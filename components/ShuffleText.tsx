@@ -1,13 +1,21 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 
 interface ShuffleTextProps {
   text: string;
   isShuffling: boolean;
+  shuffleInterval?: number;
+  shuffleProbability?: number; // Probability of a char changing per frame (0 to 1)
 }
 
 const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=[]{}|;:,.<>?';
 
-export const ShuffleText: React.FC<ShuffleTextProps> = ({ text, isShuffling }) => {
+export const ShuffleText: React.FC<ShuffleTextProps> = ({ 
+  text, 
+  isShuffling, 
+  shuffleInterval = 120, 
+  shuffleProbability = 0.1 // 10% chance
+}) => {
   const [displayedText, setDisplayedText] = useState(text);
   const intervalRef = useRef<number | null>(null);
 
@@ -18,15 +26,14 @@ export const ShuffleText: React.FC<ShuffleTextProps> = ({ text, isShuffling }) =
           .split('')
           .map((char) => {
             if (char === ' ') return ' ';
-            // Only shuffle a small percentage of characters each frame for a subtle effect
-            if (Math.random() > 0.1) {
-              return char;
+            if (Math.random() < shuffleProbability) {
+              return CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
             }
-            return CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
+            return char;
           })
           .join('');
         setDisplayedText(newText);
-      }, 120); // Interval for a slower, constant shuffle
+      }, shuffleInterval);
     } else {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
@@ -40,7 +47,7 @@ export const ShuffleText: React.FC<ShuffleTextProps> = ({ text, isShuffling }) =
         clearInterval(intervalRef.current);
       }
     };
-  }, [isShuffling, text]);
+  }, [isShuffling, text, shuffleInterval, shuffleProbability]);
 
   return <span aria-label={text} role="text">{displayedText}</span>;
 };

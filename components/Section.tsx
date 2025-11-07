@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowDownIcon } from './Icons';
 
 interface SectionProps {
@@ -13,10 +13,37 @@ interface SectionProps {
 
 export const Section = React.forwardRef<HTMLDivElement, SectionProps>(
   ({ id, title, children, isCollapsible = false, isOpen = false, onTitleClick }, ref) => {
+    const titleRef = useRef<HTMLDivElement>(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target);
+          }
+        },
+        { threshold: 0.1 }
+      );
+
+      const currentTitleRef = titleRef.current;
+      if (currentTitleRef) {
+        observer.observe(currentTitleRef);
+      }
+
+      return () => {
+        if (currentTitleRef) {
+          observer.unobserve(currentTitleRef);
+        }
+      };
+    }, []);
+
     return (
       <section ref={ref} id={id} className="py-16 sm:py-20 md:py-28">
         <div className="container mx-auto px-6">
           <div
+            ref={titleRef}
             className="text-center mb-12"
             onClick={isCollapsible ? onTitleClick : undefined}
             style={{ cursor: isCollapsible ? 'pointer' : 'default' }}
@@ -25,20 +52,20 @@ export const Section = React.forwardRef<HTMLDivElement, SectionProps>(
             tabIndex={isCollapsible ? 0 : -1}
             onKeyDown={isCollapsible ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onTitleClick?.(); } } : undefined}
           >
-            <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tighter inline-flex items-center justify-center select-none">
+            <h2 className={`text-4xl sm:text-5xl font-black uppercase tracking-tighter inline-flex items-center justify-center select-none transition-opacity duration-700 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
               {title}
               {isCollapsible && (
                 <ArrowDownIcon className={`w-6 h-6 ml-3 transition-transform duration-300 ease-in-out ${isOpen ? 'rotate-180' : 'rotate-0'}`} />
               )}
             </h2>
-            <div className="w-24 h-1 bg-white mx-auto mt-4"></div>
+            <div className={`w-24 h-1 bg-white mx-auto mt-4 transition-transform duration-700 ease-out delay-200 ${isVisible ? 'scale-x-100' : 'scale-x-0'}`} style={{transformOrigin: 'left'}}></div>
           </div>
           
           {(!isCollapsible) ? (
             children
           ) : (
-            <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
-              <div className="overflow-hidden">
+            <div className={`grid transition-[grid-template-rows] duration-700 ease-in-out ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+              <div className={`overflow-hidden transition-opacity duration-300 ease-out ${isOpen ? 'opacity-100 delay-300' : 'opacity-0'}`}>
                 {children}
               </div>
             </div>
