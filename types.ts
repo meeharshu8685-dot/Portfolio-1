@@ -28,3 +28,9 @@ export interface Inspiration {
   name: string;
   motto: string;
 }
+
+export interface GearCategory {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  items: string[];
+}

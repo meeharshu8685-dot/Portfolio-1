@@ -24,6 +24,18 @@
         left: 0;
         z-index: -1;
       }
+      .spider-sway {
+        transform-origin: top center;
+        animation: spider-sway 4s ease-in-out infinite;
+      }
+      @keyframes spider-sway {
+        0%, 100% {
+          transform: rotateZ(-8deg);
+        }
+        50% {
+          transform: rotateZ(8deg);
+        }
+      }
     </style>
   <script type="importmap">
 {

@@ -4,7 +4,7 @@ import { Header } from './components/Header';
 import { Section } from './components/Section';
 import { ProjectCard } from './components/ProjectCard';
 import { SocialIcons } from './components/SocialIcons';
-import { PROJECTS, SKILL_CATEGORIES, SOCIAL_LINKS, INSPIRATIONS } from './constants';
+import { PROJECTS, SKILL_CATEGORIES, SOCIAL_LINKS, INSPIRATIONS, GEAR_CATEGORIES } from './constants';
 import { ArrowDownIcon, MailIcon } from './components/Icons';
 
 const App: React.FC = () => {
@@ -14,6 +14,8 @@ const App: React.FC = () => {
   const skillsRef = useRef<HTMLDivElement>(null);
   const [skillsVisible, setSkillsVisible] = useState(false);
   const [heroAnimated, setHeroAnimated] = useState(false);
+  const [isGearSectionOpen, setIsGearSectionOpen] = useState(false);
+  const [isSparksSectionOpen, setIsSparksSectionOpen] = useState(false);
 
   useEffect(() => {
     setHeroAnimated(true);
@@ -134,17 +136,36 @@ const App: React.FC = () => {
               </div>
             ))}
           </div>
-          <div className="text-center mt-16 max-w-3xl mx-auto">
-            <div className="border-t border-neutral-800 pt-8">
-                <p className="text-lg md:text-xl text-neutral-400 italic">
-                  "Keep it simple. Learn deeply. Go with the flow." 🌊
-                </p>
-            </div>
-          </div>
         </Section>
         
+        {/* Philosophy Section */}
+        <Section title="My Philosophy">
+            <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-12 text-center">
+                <div className="flex flex-col items-center">
+                    <span className="text-5xl font-black text-neutral-700 mb-2">01</span>
+                    <h3 className="text-2xl font-bold text-white mb-2">Simplicity First</h3>
+                    <p className="text-neutral-400">Aiming for clean, elegant solutions. Because the most powerful ideas are often the simplest.</p>
+                </div>
+                <div className="flex flex-col items-center">
+                    <span className="text-5xl font-black text-neutral-700 mb-2">02</span>
+                    <h3 className="text-2xl font-bold text-white mb-2">Curiosity Driven</h3>
+                    <p className="text-neutral-400">Embracing the "why" and "what if." Every project is a new world to explore and learn from.</p>
+                </div>
+                <div className="flex flex-col items-center">
+                    <span className="text-5xl font-black text-neutral-700 mb-2">03</span>
+                    <h3 className="text-2xl font-bold text-white mb-2">Flow & Focus</h3>
+                    <p className="text-neutral-400">Adapting to challenges while staying grounded in the goal. It's about progress, not perfection.</p>
+                </div>
+            </div>
+        </Section>
+
         {/* Inspirations Section */}
-        <Section title="My Neural Sparks">
+        <Section 
+          title="My Neural Sparks"
+          isCollapsible={true}
+          isOpen={isSparksSectionOpen}
+          onTitleClick={() => setIsSparksSectionOpen(!isSparksSectionOpen)}
+        >
             <div className="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {INSPIRATIONS.map((inspiration) => (
                     <div key={inspiration.name} className="bg-neutral-900 border border-neutral-800 p-6 rounded-lg text-center hover:border-neutral-700 transition-colors duration-300 flex flex-col items-center justify-center">
@@ -166,6 +187,31 @@ const App: React.FC = () => {
             {PROJECTS.map((project, index) => (
               <ProjectCard key={index} project={project} />
             ))}
+          </div>
+        </Section>
+
+        {/* Gear Section */}
+        <Section 
+          title="My Gear"
+          isCollapsible={true}
+          isOpen={isGearSectionOpen}
+          onTitleClick={() => setIsGearSectionOpen(!isGearSectionOpen)}
+        >
+          <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {GEAR_CATEGORIES.map((category) => (
+              <div key={category.title} className="bg-neutral-900 border border-neutral-800 p-6 rounded-lg text-center flex flex-col items-center hover:border-neutral-700 transition-colors duration-300">
+                <category.icon className="w-10 h-10 mb-4 text-neutral-400" />
+                <h3 className="text-lg font-bold text-white mb-3">{category.title}</h3>
+                <ul className="text-neutral-400 text-sm space-y-1 list-none p-0">
+                  {category.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-12 max-w-3xl mx-auto text-neutral-500 italic text-sm">
+              <p>The tools and tech I use to bring ideas to life. This setup is always evolving with every new thing I learn.</p>
           </div>
         </Section>
 
@@ -202,9 +248,8 @@ const App: React.FC = () => {
 
       {/* Footer */}
       <footer className="py-8 border-t border-neutral-800">
-          <div className="container mx-auto px-6 text-center text-neutral-400 flex flex-col sm:flex-row justify-between items-center">
-                <p className="text-sm mb-4 sm:mb-0">&copy; {new Date().getFullYear()} Harshu. All Rights Reserved.</p>
-                <SocialIcons links={SOCIAL_LINKS} />
+          <div className="container mx-auto px-6 text-center text-neutral-400">
+                <p className="text-sm">&copy; {new Date().getFullYear()} Harshu. All Rights Reserved.</p>
           </div>
       </footer>
     </div>
