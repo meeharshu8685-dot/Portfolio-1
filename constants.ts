@@ -11,19 +11,6 @@ export const PROJECTS: Project[] = [
     liveUrl: 'https://notes-nest-weld.vercel.app/',
   },
   {
-    title: 'Zenith Finance & Task Manager',
-    description: 'A comprehensive dashboard to manage your tasks and expenses, view analytics.',
-    imageUrl: 'https://picsum.photos/seed/zenith-finance/1000/800',
-    tags: ['React', 'Dashboard', 'Finance', 'Task Management', 'Analytics'],
-    liveUrl: 'https://task-and-finance-manage.vercel.app/',
-  },
-  {
-    title: 'FlowState AI - Generative Art',
-    description: 'An experimental web application that uses generative AI to create unique visual art based on user-provided text prompts, exploring the intersection of creativity and machine learning.',
-    imageUrl: 'https://picsum.photos/seed/flowstate-ai/1000/800',
-    tags: ['Generative AI', 'React', 'TypeScript', 'Web App', 'Art'],
-  },
-  {
     title: 'Portfolio V2',
     description: 'The very portfolio you are browsing, designed with a minimalist, high-impact aesthetic.',
     imageUrl: 'https://picsum.photos/seed/project4/1000/800',
