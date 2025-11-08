@@ -56,13 +56,19 @@ const App: React.FC = () => {
             repoUrl: repo.html_url,
           }));
 
-        // Keep the curated "NotesNest" project from static data, as it's a key project.
+        // Keep the curated projects from static data, as they are key projects.
+        const wikynProject = PROJECTS.find(p => p.title.toLowerCase().includes('wikyn'));
         const notesNestProject = PROJECTS.find(p => p.title.includes('NotesNest'));
         
-        // Combine curated project with other fetched projects, avoiding duplicates.
+        // Combine curated projects with other fetched projects, avoiding duplicates.
         const allProjects = [
+          wikynProject,
           notesNestProject,
-          ...fetchedProjects.filter(p => !p.title.toLowerCase().includes('notesnest') && !p.title.toLowerCase().includes('portfolio'))
+          ...fetchedProjects.filter(p => 
+            !p.title.toLowerCase().includes('notesnest') && 
+            !p.title.toLowerCase().includes('portfolio') &&
+            !p.title.toLowerCase().includes('wikyn')
+          )
         ].filter(Boolean) as Project[];
 
         if (allProjects.length > 0) {
