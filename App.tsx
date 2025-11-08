@@ -7,6 +7,7 @@ import { SocialIcons } from './components/SocialIcons';
 import { PROJECTS, SKILL_CATEGORIES, SOCIAL_LINKS, INSPIRATIONS, GEAR_CATEGORIES } from './constants';
 import { ArrowDownIcon, MailIcon } from './components/Icons';
 import { ShuffleText } from './components/ShuffleText';
+import type { Project } from './types';
 
 const App: React.FC = () => {
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -29,8 +30,54 @@ const App: React.FC = () => {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [isHarshuShuffling, setIsHarshuShuffling] = useState(false);
 
+  // State for projects, initialized with static data as a fallback
+  const [projects, setProjects] = useState<Project[]>(PROJECTS);
+
   useEffect(() => {
     setHeroAnimated(true);
+    
+    // Fetch dynamic project data from GitHub
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('https://api.github.com/users/meeharshu8685-dot/repos?sort=pushed&direction=desc');
+        if (!response.ok) {
+          throw new Error(`GitHub API responded with ${response.status}`);
+        }
+        const data = await response.json();
+        
+        const fetchedProjects: Project[] = data
+          .filter((repo: any) => !repo.fork && repo.description && repo.name !== 'meeharshu8685-dot') // Filter out forks, repos w/o descriptions, and profile README
+          .map((repo: any) => ({
+            title: repo.name.replace(/-/g, ' ').replace(/_/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+            description: repo.description,
+            imageUrl: `https://picsum.photos/seed/${repo.name}/1000/800`,
+            tags: repo.topics || [],
+            liveUrl: repo.homepage || undefined,
+            repoUrl: repo.html_url,
+          }));
+
+        // Keep the curated "NotesNest" project from static data, as it's a key project.
+        const notesNestProject = PROJECTS.find(p => p.title.includes('NotesNest'));
+        
+        // Combine curated project with other fetched projects, avoiding duplicates.
+        const allProjects = [
+          notesNestProject,
+          ...fetchedProjects.filter(p => !p.title.toLowerCase().includes('notesnest') && !p.title.toLowerCase().includes('portfolio'))
+        ].filter(Boolean) as Project[];
+
+        if (allProjects.length > 0) {
+          // Show the best projects
+          setProjects(allProjects.slice(0, 4));
+        }
+
+      } catch (error) {
+        console.error('Failed to fetch projects from GitHub. Falling back to static data.', error);
+        // On failure, the component will use the initial state (PROJECTS from constants.ts)
+      }
+    };
+
+    fetchProjects();
+
   }, []);
 
   useEffect(() => {
@@ -254,7 +301,7 @@ const App: React.FC = () => {
         {/* Projects Section */}
         <Section ref={projectsRef} id="projects" title="Selected Work">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            {PROJECTS.map((project, index) => (
+            {projects.map((project, index) => (
                <div
                   key={index}
                   className={`transition-all duration-700 ease-out ${projectsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
@@ -314,20 +361,17 @@ const App: React.FC = () => {
                     </div>
                 </div>
                 <div className={`mt-12 transition-all duration-700 ease-out ${contactVisible ? 'opacity-100 translate-y-0 delay-[450ms]' : 'opacity-0 translate-y-8'}`}>
-                    <p className="text-neutral-400 mb-6">You can also find me on:</p>
-                    <div className="flex justify-center">
-                         <SocialIcons links={SOCIAL_LINKS} iconClassName="w-8 h-8" />
-                    </div>
+                    <SocialIcons links={SOCIAL_LINKS} iconClassName="w-8 h-8" />
                 </div>
             </div>
-        </section>
+        </Section>
       </main>
 
-      {/* Footer */}
-      <footer className="py-8 border-t border-neutral-800">
-          <div className="container mx-auto px-6 text-center text-neutral-400">
-                <p className="text-sm">&copy; {new Date().getFullYear()} Harshu. All Rights Reserved.</p>
-          </div>
+      <footer className="bg-neutral-900/50 border-t border-neutral-800 text-center py-8">
+        <div className="container mx-auto px-6">
+            <p className="text-neutral-500 text-sm">&copy; {new Date().getFullYear()} Harshu. All rights reserved.</p>
+            <p className="text-neutral-600 text-xs mt-2">Inspired by the digital playground. Built with curiosity.</p>
+        </div>
       </footer>
     </div>
   );
