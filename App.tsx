@@ -46,7 +46,7 @@ const App: React.FC = () => {
         }
         const data = await response.json();
         
-        const unwantedRepoNames = ['task-and-finance-manage', 'habitflow-frontend', 'wikyn'];
+        const unwantedRepoNames = ['task-and-finance-manage', 'habitflow-frontend', 'habitflow', 'wikyn'];
 
         const fetchedProjects: Project[] = data
           .filter((repo: any) => 
@@ -65,20 +65,24 @@ const App: React.FC = () => {
           }));
 
         // Keep the curated projects from static data, as they are key projects.
-        const notesNestProject = PROJECTS.find(p => p.title.includes('NotesNest'));
+        const curatedProjects = PROJECTS.filter(p => p.title.includes('Blusdesk') || p.title.includes('NotesNest'));
         
         // Combine curated projects with other fetched projects, avoiding duplicates.
         const allProjects = [
-          notesNestProject,
-          ...fetchedProjects.filter(p => 
-            !p.title.toLowerCase().includes('notesnest') && 
-            !p.title.toLowerCase().includes('portfolio')
-          )
+          ...curatedProjects,
+          ...fetchedProjects.filter(p => {
+            const normalizedTitle = p.title.toLowerCase().replace(/[^a-z0-9]/g, '');
+            return !normalizedTitle.includes('notesnest') &&
+                   !normalizedTitle.includes('blusdesk') &&
+                   !normalizedTitle.includes('portfolio');
+          })
         ].filter(Boolean) as Project[];
 
         if (allProjects.length > 0) {
+          // Explicitly filter out habitflow just in case it slipped through
+          const finalProjects = allProjects.filter(p => !p.title.toLowerCase().includes('habitflow'));
           // Show the best projects
-          setProjects(allProjects.slice(0, 4));
+          setProjects(finalProjects.slice(0, 4));
         }
 
       } catch (error) {

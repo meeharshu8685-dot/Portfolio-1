@@ -4,11 +4,20 @@ import { GithubIcon, LinkedinIcon, InstagramIcon, CodeWithHarryIcon, TharunNaikI
 
 export const PROJECTS: Project[] = [
   {
+    title: 'Blusdesk - All-in-One Business Platform',
+    description: 'A comprehensive suite of tools for ticketing, knowledge base management, and customer support. Blusdesk helps streamline workflows, improve customer satisfaction, and empower support teams.',
+    imageUrl: 'https://picsum.photos/seed/blusdesk/1000/800',
+    tags: ['Next.js', 'TypeScript', 'SaaS', 'Customer Support', 'Prisma', 'Tailwind CSS'],
+    liveUrl: 'https://blusdesk.vercel.app/',
+    repoUrl: 'https://github.com/meeharshu8685-dot/blusdesk',
+  },
+  {
     title: 'NotesNest – Personal Notes & Resource Hub',
     description: 'A modern and interactive web-based platform designed to organize, manage, and showcase college study materials in a visually appealing and accessible way. It serves as a centralized hub where a student can store, categorize, and share subject-wise notes, PDFs, and learning resources — integrated directly with Google Drive links.',
     imageUrl: 'https://picsum.photos/seed/notes-nest/1000/800',
     tags: ['React', 'Web App', 'Education', 'Google Drive', 'Resource Hub'],
     liveUrl: 'https://notes-nest-weld.vercel.app/',
+    repoUrl: 'https://github.com/meeharshu8685-dot/notes-nest',
   },
   {
     title: 'Portfolio V2',
