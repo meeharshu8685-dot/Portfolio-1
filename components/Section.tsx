@@ -58,7 +58,7 @@ export const Section = React.forwardRef<HTMLDivElement, SectionProps>(
                 <ArrowDownIcon className={`w-6 h-6 ml-3 transition-transform duration-300 ease-in-out ${isOpen ? 'rotate-180' : 'rotate-0'}`} />
               )}
             </h2>
-            <div className={`w-24 h-1 bg-white mx-auto mt-4 transition-transform duration-700 ease-out delay-200 ${isVisible ? 'scale-x-100' : 'scale-x-0'}`} style={{transformOrigin: 'left'}}></div>
+            <div className={`w-24 h-1 bg-black dark:bg-white mx-auto mt-4 transition-transform duration-700 ease-out delay-200 ${isVisible ? 'scale-x-100' : 'scale-x-0'}`} style={{transformOrigin: 'left'}}></div>
           </div>
           
           {(!isCollapsible) ? (
