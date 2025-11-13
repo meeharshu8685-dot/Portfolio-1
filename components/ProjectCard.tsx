@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type { Project } from '../types';
 import { ExternalLinkIcon, GithubIcon } from './Icons';
@@ -10,7 +9,7 @@ interface ProjectCardProps {
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     // The main container. On desktop (md+), it becomes a relative frame for positioning.
-    <div className="group bg-neutral-900 border border-neutral-800 overflow-hidden md:relative">
+    <div className="group bg-neutral-900 border border-neutral-800 overflow-hidden md:relative transition-all duration-300 ease-in-out hover:border-neutral-700 hover:shadow-xl hover:shadow-black/30">
       
       {/* Image. It's a block element that defines the card's dimensions on desktop. */}
       <img

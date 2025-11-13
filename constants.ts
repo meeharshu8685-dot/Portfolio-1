@@ -70,7 +70,7 @@ export const GEAR_CATEGORIES: GearCategory[] = [
     {
         icon: MonitorIcon,
         title: 'Main Setup',
-        items: ['MacBook Air M1', 'Lenovo ThinkVision T32h', 'Lenovo Thinkpad C13 Yoga', 'Samsung S24', 'Oneplus 7t'],
+        items: ['MacBook Air M1', 'Lenovo ThinkVision T32h', 'Lenovo Thinkpad C13 Yoga', 'Samsung S24', 'Samsung S22 Plus', 'Oneplus 7t'],
     },
     {
         icon: KeyboardIcon,
