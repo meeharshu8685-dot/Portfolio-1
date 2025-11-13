@@ -4,13 +4,6 @@ import { GithubIcon, LinkedinIcon, InstagramIcon, CodeWithHarryIcon, TharunNaikI
 
 export const PROJECTS: Project[] = [
   {
-    title: 'Wikyn – Personal Knowledge Base',
-    description: 'A sleek and modern personal wiki application to capture, organize, and retrieve knowledge effortlessly. Built for speed and simplicity, it helps you build your own digital brain.',
-    imageUrl: 'https://picsum.photos/seed/wikyn/1000/800',
-    tags: ['React', 'Next.js', 'Wiki', 'Knowledge Management', 'Productivity'],
-    liveUrl: 'https://wikyn-8nftjmk43-harshus-projects-d6c13ae1.vercel.app/',
-  },
-  {
     title: 'NotesNest – Personal Notes & Resource Hub',
     description: 'A modern and interactive web-based platform designed to organize, manage, and showcase college study materials in a visually appealing and accessible way. It serves as a centralized hub where a student can store, categorize, and share subject-wise notes, PDFs, and learning resources — integrated directly with Google Drive links.',
     imageUrl: 'https://picsum.photos/seed/notes-nest/1000/800',

@@ -45,8 +45,15 @@ const App: React.FC = () => {
         }
         const data = await response.json();
         
+        const unwantedRepoNames = ['task-and-finance-manage', 'habitflow-frontend', 'wikyn'];
+
         const fetchedProjects: Project[] = data
-          .filter((repo: any) => !repo.fork && repo.description && repo.name !== 'meeharshu8685-dot') // Filter out forks, repos w/o descriptions, and profile README
+          .filter((repo: any) => 
+            !repo.fork && 
+            repo.description && 
+            repo.name !== 'meeharshu8685-dot' &&
+            !unwantedRepoNames.includes(repo.name.toLowerCase())
+          )
           .map((repo: any) => ({
             title: repo.name.replace(/-/g, ' ').replace(/_/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
             description: repo.description,
@@ -57,17 +64,14 @@ const App: React.FC = () => {
           }));
 
         // Keep the curated projects from static data, as they are key projects.
-        const wikynProject = PROJECTS.find(p => p.title.toLowerCase().includes('wikyn'));
         const notesNestProject = PROJECTS.find(p => p.title.includes('NotesNest'));
         
         // Combine curated projects with other fetched projects, avoiding duplicates.
         const allProjects = [
-          wikynProject,
           notesNestProject,
           ...fetchedProjects.filter(p => 
             !p.title.toLowerCase().includes('notesnest') && 
-            !p.title.toLowerCase().includes('portfolio') &&
-            !p.title.toLowerCase().includes('wikyn')
+            !p.title.toLowerCase().includes('portfolio')
           )
         ].filter(Boolean) as Project[];
 
