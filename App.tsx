@@ -8,7 +8,6 @@ import { PROJECTS, SKILL_CATEGORIES, SOCIAL_LINKS, INSPIRATIONS, GEAR_CATEGORIES
 import { ArrowDownIcon, MailIcon, SunIcon, MoonIcon } from './components/Icons';
 import { ShuffleText } from './components/ShuffleText';
 import type { Project } from './types';
-import { Cursor } from './components/Cursor';
 
 const App: React.FC = () => {
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -197,7 +196,6 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-neutral-100 dark:bg-[#111111] text-neutral-800 dark:text-neutral-200 transition-colors duration-300">
-      <Cursor />
       <Header
         onAboutClick={() => scrollTo(aboutRef)}
         onProjectsClick={() => scrollTo(projectsRef)}
@@ -220,129 +218,202 @@ const App: React.FC = () => {
           </video>
           <div className="relative z-10 px-4">
             <h1 className={`text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-none transition-all duration-700 ease-out ${heroAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <ShuffleText text="HARSHU" isShuffling={isHarshuShuffling} />
+              <ShuffleText text="Harshu" isShuffling={isHarshuShuffling} shuffleInterval={200} shuffleProbability={0.03} />
             </h1>
-            <p className={`mt-4 text-lg md:text-xl max-w-2xl mx-auto text-neutral-300 transition-all duration-700 ease-out delay-200 ${heroAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              Computer Science Student | Aspiring AI Engineer
+            <p className={`mt-4 text-xl md:text-3xl font-semibold text-neutral-300 transition-all duration-700 ease-out delay-200 ${heroAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              Innovate. Create. Develop.
             </p>
-            <div className={`mt-8 transition-all duration-700 ease-out delay-500 ${heroAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <button
-                onClick={handleViewWorkClick}
-                onMouseEnter={() => setIsButtonShuffling(true)}
-                onMouseLeave={handleButtonMouseLeave}
-                className="group relative inline-block text-lg font-bold uppercase tracking-widest text-white py-4 px-8 border-2 border-white transition-colors duration-300 hover:bg-white hover:text-black"
-              >
-                <span className="relative z-10">
-                    <ShuffleText text="View My Work" isShuffling={isButtonShuffling} />
-                </span>
-              </button>
-            </div>
-          </div>
-          <div className={`absolute bottom-10 left-1/2 -translate-x-1/2 transition-opacity duration-700 delay-1000 ${heroAnimated ? 'opacity-100' : 'opacity-0'}`}>
-            <button onClick={() => scrollTo(aboutRef)} aria-label="Scroll to about section">
-              <ArrowDownIcon className="w-8 h-8 animate-bounce" />
+            <button
+              onClick={handleViewWorkClick}
+              onMouseEnter={() => setIsButtonShuffling(false)}
+              onMouseLeave={handleButtonMouseLeave}
+              className={`mt-8 px-8 py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-neutral-300 flex items-center justify-center mx-auto transition-all duration-700 ease-out delay-400 ${heroAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            >
+              <ShuffleText text="View Work" isShuffling={isButtonShuffling} /> <ArrowDownIcon className="ml-2" />
             </button>
           </div>
         </section>
 
         {/* About Section */}
-        <Section ref={aboutRef} id="about" title="The Blueprint">
-            <div className={`max-w-4xl mx-auto text-center text-lg md:text-xl transition-opacity duration-700 ease-out ${heroAnimated ? 'opacity-100' : 'opacity-0'}`}>
-                <p className="mb-4">
-                    I'm a computer science student with a deep curiosity for artificial intelligence and machine learning. My goal is to build intelligent systems that solve real-world problems and push the boundaries of technology.
-                </p>
-                <p>
-                    This space is a showcase of my journey—the projects I've built, the skills I'm developing, and the ideas that keep me up at night. I believe in learning by doing, and every line of code is a step forward.
-                </p>
+        <Section ref={aboutRef} id="about" title="About Me">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-lg text-neutral-600 dark:text-neutral-300 space-y-4 text-center">
+              <p>
+                Hey there 👋 I’m Harshu — a B.Sc. Computer Science student at BITS Pilani who’s deeply curious about how tech shapes the world.
+              </p>
+              <p>
+                I’m into Artificial Intelligence, Machine Learning, Data Science, and Prompt Engineering — the stuff that makes machines a little smarter (and life a little cooler). Right now, I’m just getting started with C language, but there’s a long way to go — and I’m all in for the ride.
+              </p>
+               <p>
+                I’m kind of an introvert — I love my silence, my space, and the calm that comes with being alone. Still, I’ve got a soft spot for nature, traveling, and my friends, who mean more to me than anything else.
+              </p>
+              <p>
+                I like keeping things simple: learn more, stay curious, and go with the flow 🌊
+              </p>
             </div>
+          </div>
         </Section>
         
         {/* Skills Section */}
-        <Section ref={skillsRef} id="skills" title="Toolkit">
-          <div className={`skills-section-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto ${skillsVisible ? 'section-is-visible' : ''}`}>
-            {SKILL_CATEGORIES.map((category) => (
-              <div key={category.title} className="skill-card bg-white dark:bg-neutral-900 p-8 text-center border border-neutral-200 dark:border-neutral-800 transition-all duration-300 ease-in-out hover:border-neutral-300 dark:hover:border-neutral-700 hover:shadow-lg dark:hover:shadow-black/20">
-                <category.icon className="w-16 h-16 mx-auto mb-6 text-black dark:text-white" />
-                <h3 className="text-xl font-bold uppercase tracking-wider mb-2">{category.title}</h3>
-                <p className="text-neutral-500 dark:text-neutral-400 mb-4 text-sm">{category.description}</p>
-                <ul className="space-y-1">
-                  {category.skills.map(skill => <li key={skill}>{skill}</li>)}
-                </ul>
+        <Section ref={skillsRef} title="My Toolkit">
+          <div className={`max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8 skills-section-container ${skillsVisible ? 'section-is-visible' : ''}`}>
+            {SKILL_CATEGORIES.map((category, index) => (
+              <div 
+                key={category.title} 
+                className={`skill-card bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-6 rounded-lg flex flex-col h-full hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-700 ease-out ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
+              >
+                <h3 className="text-xl font-bold mb-4 flex items-center text-neutral-900 dark:text-white">
+                  <category.icon className="w-6 h-6 mr-3 text-neutral-500 dark:text-neutral-400" />
+                  {category.title}
+                </h3>
+                <p className="text-neutral-600 dark:text-neutral-300 mb-4 text-sm leading-relaxed">
+                  {category.skills.join(' · ')}
+                </p>
+                <p className="text-neutral-500 text-sm mt-auto italic">
+                  {category.description}
+                </p>
               </div>
             ))}
           </div>
         </Section>
         
         {/* Philosophy Section */}
-        <Section ref={philosophyRef} id="philosophy" title="Inspiration Sparks">
-          <div className={`max-w-4xl mx-auto transition-opacity duration-1000 ${philosophyVisible ? 'opacity-100 section-is-visible' : 'opacity-0'}`}>
-            <p className="text-center text-lg md:text-xl mb-12">
-              Inspired by creators who simplify complexity and build with purpose.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
-              {INSPIRATIONS.map((inspiration) => (
-                <div key={inspiration.name} className="bg-white dark:bg-neutral-900 p-8 border border-neutral-200 dark:border-neutral-800">
-                  <inspiration.icon className="w-12 h-12 mx-auto mb-4 text-black dark:text-white" />
-                  <h3 className="text-2xl font-bold">{inspiration.name}</h3>
-                  <p className="text-neutral-500 dark:text-neutral-400 text-lg">"{inspiration.motto}"</p>
-                </div>
-              ))}
+        <Section ref={philosophyRef} title="My Philosophy">
+            <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-12 text-center">
+                {[{
+                    title: "Simplicity First",
+                    description: "Aiming for clean, elegant solutions. Because the most powerful ideas are often the simplest."
+                }, {
+                    title: "Curiosity Driven",
+                    description: "Embracing the \"why\" and \"what if.\" Every project is a new world to explore and learn from."
+                }, {
+                    title: "Flow & Focus",
+                    description: "Adapting to challenges while staying grounded in the goal. It's about progress, not perfection."
+                }].map((item, index) => (
+                    <div 
+                      key={item.title} 
+                      className={`flex flex-col items-center transition-all duration-700 ease-out ${philosophyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                      style={{ transitionDelay: `${index * 150}ms` }}
+                    >
+                        <span className="text-5xl font-black text-neutral-300 dark:text-neutral-700 mb-2">0{index + 1}</span>
+                        <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-2">{item.title}</h3>
+                        <p className="text-neutral-600 dark:text-neutral-400">{item.description}</p>
+                    </div>
+                ))}
             </div>
-          </div>
         </Section>
-        
+
+        {/* Inspirations Section */}
+        <Section 
+          title="My Neural Sparks"
+          isCollapsible={true}
+          isOpen={isSparksSectionOpen}
+          onTitleClick={() => setIsSparksSectionOpen(!isSparksSectionOpen)}
+        >
+            <div className="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {INSPIRATIONS.map((inspiration) => (
+                    <div key={inspiration.name} className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-6 rounded-lg text-center hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors duration-300 flex flex-col items-center justify-center">
+                        <inspiration.icon className="w-8 h-8 mb-3 text-neutral-500 dark:text-neutral-400" />
+                        <h3 className="text-base font-bold text-neutral-900 dark:text-white">{inspiration.name}</h3>
+                        <p className="text-neutral-500 text-sm mt-1">&mdash; {inspiration.motto}</p>
+                    </div>
+                ))}
+            </div>
+            <div className="text-center mt-8 max-w-3xl mx-auto text-neutral-500 italic text-sm">
+                <p>Each one powers a different part of my system — curiosity, creativity, and authenticity.</p>
+            </div>
+        </Section>
+
+
         {/* Projects Section */}
-        <Section ref={projectsRef} id="projects" title="Featured Work">
-          <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 transition-opacity duration-1000 ${projectsVisible ? 'opacity-100' : 'opacity-0'}`}>
-            {projects.map(project => (
-              <ProjectCard key={project.title} project={project} />
+        <Section ref={projectsRef} id="projects" title="Selected Work">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+            {projects.map((project, index) => (
+               <div
+                  key={index}
+                  className={`transition-all duration-700 ease-out ${projectsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+                  style={{ transitionDelay: `${index * 150}ms` }}
+                >
+                  <ProjectCard project={project} />
+                </div>
             ))}
           </div>
         </Section>
 
         {/* Gear Section */}
         <Section 
-            ref={gearRef} 
-            id="gear" 
-            title="My Gear"
-            isCollapsible={true}
-            isOpen={isGearSectionOpen}
-            onTitleClick={() => setIsGearSectionOpen(!isGearSectionOpen)}
+          ref={gearRef}
+          title="My Gear"
+          isCollapsible={true}
+          isOpen={isGearSectionOpen}
+          onTitleClick={() => setIsGearSectionOpen(!isGearSectionOpen)}
         >
-          <div className={`gear-section-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto ${gearVisible ? 'section-is-visible' : ''}`}>
-            {GEAR_CATEGORIES.map((category) => (
-              <div key={category.title} className="gear-card bg-white dark:bg-neutral-900 p-8 text-center border border-neutral-200 dark:border-neutral-800">
-                <category.icon className="w-12 h-12 mx-auto mb-6 text-black dark:text-white" />
-                <h3 className="text-xl font-bold uppercase tracking-wider mb-4">{category.title}</h3>
-                <ul className="space-y-2 text-neutral-600 dark:text-neutral-300">
-                  {category.items.map(item => <li key={item}>{item}</li>)}
+          <div className={`max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 gear-section-container ${gearVisible ? 'section-is-visible' : ''}`}>
+            {GEAR_CATEGORIES.map((category, index) => (
+              <div key={category.title} className={`gear-card bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-6 rounded-lg text-center flex flex-col items-center hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-700 ease-out ${gearVisible ? 'opacity-100' : 'opacity-0'}`} style={{transitionDelay: `${index * 150}ms`}}>
+                <category.icon className="w-10 h-10 mb-4 text-neutral-500 dark:text-neutral-400" />
+                <h3 className="text-lg font-bold text-neutral-900 dark:text-white mb-3">{category.title}</h3>
+                <ul className="text-neutral-600 dark:text-neutral-400 text-sm space-y-1 list-none p-0">
+                  {category.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
                 </ul>
               </div>
             ))}
           </div>
-        </Section>
-        
-        {/* Contact Section */}
-        <Section ref={contactRef} id="contact" title="Get In Touch">
-          <div className={`text-center max-w-3xl mx-auto transition-opacity duration-1000 ${contactVisible ? 'opacity-100' : 'opacity-0'}`}>
-            <p className="text-lg md:text-xl mb-8">
-              Have a project, an idea, or just want to talk about tech? I'm always open to connecting.
-            </p>
-            <div className="flex justify-center items-center gap-8">
-              <button
-                onClick={handleEmailClick}
-                className="inline-flex items-center text-lg font-bold uppercase tracking-widest text-white py-4 px-8 bg-black dark:bg-white dark:text-black transition-transform duration-300 hover:scale-105"
-              >
-                <MailIcon className="mr-3"/>
-                Send an Email
-              </button>
-            </div>
-            <div className="mt-12">
-                <SocialIcons links={SOCIAL_LINKS} iconClassName="w-8 h-8"/>
-            </div>
+          <div className="text-center mt-12 max-w-3xl mx-auto text-neutral-500 italic text-sm">
+              <p>The tools and tech I use to bring ideas to life. This setup is always evolving with every new thing I learn.</p>
           </div>
-        </section>
+        </Section>
+
+        {/* Contact Section */}
+        <Section ref={contactRef} id="contact" title="Connect With Me">
+            <div className="text-center max-w-2xl mx-auto">
+                <p className={`text-xl text-neutral-600 dark:text-neutral-300 mb-8 transition-all duration-700 ease-out ${contactVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                    I'm currently seeking new opportunities and I'm always open to a chat. Whether you have a question, a project idea, or just want to say hi, feel free to reach out!
+                </p>
+                <button
+                    onClick={handleEmailClick}
+                    className={`inline-flex items-center justify-center text-xl font-bold text-white bg-black dark:text-black dark:bg-white px-10 py-5 group transition-all duration-700 ease-out hover:scale-105 ${contactVisible ? 'opacity-100 translate-y-0 delay-150' : 'opacity-0 translate-y-8'}`}
+                >
+                    <MailIcon className="mr-3 text-white dark:text-black" />
+                    Say Hello
+                </button>
+                 <div className={`mt-8 text-neutral-600 dark:text-neutral-400 transition-all duration-700 ease-out ${contactVisible ? 'opacity-100 translate-y-0 delay-300' : 'opacity-0 translate-y-8'}`}>
+                    <p>Or reach out directly:</p>
+                    <div className="mt-2 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+                        <a href="mailto:meeharshu8686@gmail.com" className="font-semibold text-neutral-800 dark:text-neutral-200 hover:text-black dark:hover:text-white transition-colors">meeharshu8686@gmail.com</a>
+                        <span className="text-neutral-400 dark:text-neutral-600 hidden sm:inline">|</span>
+                        <a href="mailto:iykharshu8685@gmail.com" className="font-semibold text-neutral-800 dark:text-neutral-200 hover:text-black dark:hover:text-white transition-colors">iykharshu8685@gmail.com</a>
+                    </div>
+                </div>
+                <div className={`mt-12 transition-all duration-700 ease-out ${contactVisible ? 'opacity-100 translate-y-0 delay-[450ms]' : 'opacity-0 translate-y-8'}`}>
+                    <div className="flex justify-center">
+                      <SocialIcons links={SOCIAL_LINKS} iconClassName="w-8 h-8" />
+                    </div>
+                </div>
+                <div className={`mt-8 text-center transition-all duration-700 ease-out ${contactVisible ? 'opacity-100 translate-y-0 delay-[600ms]' : 'opacity-0 translate-y-8'}`}>
+                  <button
+                    onClick={toggleTheme}
+                    className="p-3 rounded-full text-neutral-500 dark:text-neutral-400 bg-neutral-200 dark:bg-neutral-800/50 hover:text-black dark:hover:text-white hover:bg-neutral-300 dark:hover:bg-neutral-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-500 dark:focus:ring-offset-black"
+                    aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+                  >
+                    {theme === 'dark' ? <SunIcon className="w-6 h-6" /> : <MoonIcon className="w-6 h-6" />}
+                  </button>
+                </div>
+            </div>
+        </Section>
       </main>
 
-      <footer className="bg-neutral-200 dark:bg-black py-8">
-        
+      <footer className="bg-neutral-200/50 dark:bg-neutral-900/50 border-t border-neutral-200 dark:border-neutral-800 text-center py-8">
+        <div className="container mx-auto px-6">
+            <p className="text-neutral-500 text-sm">&copy; {new Date().getFullYear()} Harshu. All rights reserved.</p>
+            <p className="text-neutral-600 text-xs mt-2">Inspired by the digital playground. Built with curiosity.</p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
