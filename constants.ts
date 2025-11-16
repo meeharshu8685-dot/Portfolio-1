@@ -20,12 +20,12 @@ export const PROJECTS: Project[] = [
     repoUrl: 'https://github.com/meeharshu8685-dot/notes-nest',
   },
   {
-    title: 'Portfolio V2',
-    description: 'The very portfolio you are browsing, designed with a minimalist, high-impact aesthetic.',
-    imageUrl: 'https://picsum.photos/seed/project4/1000/800',
-    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-    liveUrl: '/',
-    repoUrl: 'https://github.com/meeharshu8685-dot/portfolio-v2',
+    title: 'Innerdecode',
+    description: 'A simple, powerful, choice-based system that maps your problem and gives you real solutions—instantly.',
+    imageUrl: 'https://picsum.photos/seed/inner-code/1000/800',
+    tags: ['Web Development', 'Learning', 'Programming', 'Frontend'],
+    liveUrl: 'https://innerdecode.vercel.app/',
+    repoUrl: undefined,
   },
 ];
 
