@@ -14,7 +14,7 @@ export const PROJECTS: Project[] = [
   {
     title: 'NotesNest – Personal Notes & Resource Hub',
     description: 'A modern and interactive web-based platform designed to organize, manage, and showcase college study materials in a visually appealing and accessible way. It serves as a centralized hub where a student can store, categorize, and share subject-wise notes, PDFs, and learning resources — integrated directly with Google Drive links.',
-    imageUrl: 'https://picsum.photos/seed/notes-nest/1000/800',
+    imageUrl: 'https://myimgs.org/storage/images/11767/_.jpeg',
     tags: ['React', 'Web App', 'Education', 'Google Drive', 'Resource Hub'],
     liveUrl: 'https://notes-nest-weld.vercel.app/',
     repoUrl: 'https://github.com/meeharshu8685-dot/notes-nest',
@@ -22,7 +22,7 @@ export const PROJECTS: Project[] = [
   {
     title: 'Innerdecode',
     description: 'A simple, powerful, choice-based system that maps your problem and gives you real solutions—instantly.',
-    imageUrl: 'https://picsum.photos/seed/inner-code/1000/800',
+    imageUrl: 'https://myimgs.org/storage/images/11768/Stanford Social Innovation Review - Child Mental….jpeg',
     tags: ['Web Development', 'Learning', 'Programming', 'Frontend'],
     liveUrl: 'https://innerdecode.vercel.app/',
     repoUrl: undefined,
