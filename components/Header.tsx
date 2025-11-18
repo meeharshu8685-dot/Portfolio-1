@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { SpiderIcon } from './Icons';
+import { SpiderIcon, DownloadIcon } from './Icons';
 
 interface HeaderProps {
   onAboutClick: () => void;
@@ -32,6 +32,14 @@ export const Header: React.FC<HeaderProps> = ({ onAboutClick, onProjectsClick, o
       <button onClick={() => handleLinkClick(onAboutClick)} className="hover:text-black dark:hover:text-white transition-colors duration-300">About</button>
       <button onClick={() => handleLinkClick(onProjectsClick)} className="hover:text-black dark:hover:text-white transition-colors duration-300">Projects</button>
       <button onClick={() => handleLinkClick(onContactClick)} className="hover:text-black dark:hover:text-white transition-colors duration-300">Contact</button>
+      <a 
+        href="/Harsh_Vishwakarma_Resume.pdf" 
+        download="Harsh_Vishwakarma_Resume.pdf"
+        className="hover:text-black dark:hover:text-white transition-colors duration-300 flex items-center"
+        aria-label="Download Resume"
+      >
+        Resume <DownloadIcon className="ml-1.5 w-4 h-4" />
+      </a>
     </>
   );
 
@@ -50,7 +58,7 @@ export const Header: React.FC<HeaderProps> = ({ onAboutClick, onProjectsClick, o
         </nav>
 
         <div className="md:hidden">
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="z-50 relative">
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="z-50 relative" aria-label="Toggle menu">
                 <svg className="w-6 h-6 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     {isMenuOpen ? (
                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
