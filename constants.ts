@@ -1,5 +1,5 @@
 
-import type { Project, SkillCategory, Inspiration, GearCategory } from './types';
+import type { Project, SkillCategory, Inspiration, GearCategory, SocialLink } from './types';
 import { GithubIcon, LinkedinIcon, InstagramIcon, CodeWithHarryIcon, TharunNaikIcon, LanguagesIcon, AiIcon, ToolsIcon, ExploringIcon, SoftSkillsIcon, MonitorIcon, KeyboardIcon, BrainCircuitIcon } from './components/Icons';
 
 export const PROJECTS: Project[] = [
@@ -98,7 +98,7 @@ export const GEAR_CATEGORIES: GearCategory[] = [
     }
 ];
 
-export const SOCIAL_LINKS = [
+export const SOCIAL_LINKS: SocialLink[] = [
     { name: 'GitHub', url: 'https://github.com/meeharshu8685-dot', icon: GithubIcon },
     { name: 'LinkedIn', url: 'https://www.linkedin.com/in/harsh-vishwakarma-20870b37b', icon: LinkedinIcon },
     { name: 'Instagram', url: 'https://www.instagram.com/iyk.hrshu?igsh=am1jb203ZzRnZ2Ry', icon: InstagramIcon },

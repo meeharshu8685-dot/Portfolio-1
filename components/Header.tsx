@@ -44,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({ onAboutClick, onProjectsClick, o
   );
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/80 dark:bg-black/80 backdrop-blur-sm shadow-lg' : 'bg-transparent'} ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full'}`}>
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/20 dark:bg-black/20 backdrop-blur-lg shadow-lg border-b border-white/20 dark:border-white/10' : 'bg-transparent'} ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full'}`}>
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="relative">
           <a href="#" className="text-2xl font-black uppercase tracking-tighter">H.</a>

@@ -10,7 +10,7 @@ interface ProjectCardProps {
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     // The main container. On desktop (md+), it becomes a relative frame for positioning.
-    <div className="group bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 overflow-hidden md:relative transition-all duration-300 ease-in-out hover:border-neutral-300 dark:hover:border-neutral-700 hover:shadow-xl dark:hover:shadow-black/30">
+    <div className="group bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 dark:border-white/10 overflow-hidden md:relative transition-all duration-300 ease-in-out hover:shadow-xl dark:hover:shadow-black/30">
       
       {/* Image. It's a block element that defines the card's dimensions on desktop. */}
       <img
@@ -20,7 +20,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       />
       
       {/* Gradient overlay. Hidden on mobile, visible and absolute on desktop. */}
-      <div className="hidden md:block md:absolute md:inset-0 md:bg-gradient-to-t from-white/90 via-white/70 to-transparent dark:from-black/95 dark:via-black/80" />
+      <div className="hidden md:block md:absolute md:inset-0 md:bg-gradient-to-t from-white/90 via-white/70 to-transparent dark:from-black/95 dark:via-black/80 md:backdrop-blur-sm" />
       
       {/* Content Section. On mobile, this is a standard padded block below the image. 
           On desktop, it's an absolute overlay. */}
