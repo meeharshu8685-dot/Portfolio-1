@@ -5,7 +5,7 @@ import { GithubIcon, LinkedinIcon, InstagramIcon, CodeWithHarryIcon, TharunNaikI
 export const PROJECTS: Project[] = [
   {
     title: 'MediGuardia - AI Medical Assistant',
-    description: 'A full-scale AI medical assistant built to bridge the gap between everyday health concerns and reliable guidance. Features an intelligent symptom-checker powered by Gemini AI, medical profile management, medication tracking, and an emergency SOS module. Team: Harsh Vishwakarma (Lead Developer, UI, AI & Architecture) & Abhishek Gaud (Co-developer, Frontend & Support Modules).',
+    description: 'An AI-powered medical assistant providing reliable health guidance through an intelligent symptom checker and profile management. Built with Gemini AI to bridge the gap between users and accessible healthcare.',
     imageUrl: 'https://picsum.photos/seed/mediguardia/1000/800',
     tags: ['AI', 'HealthTech', 'Gemini AI', 'Next.js', 'Vercel'],
     liveUrl: 'https://mediguardia.vercel.app/#',
@@ -13,7 +13,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: 'Blusdesk - All-in-One Business Platform',
-    description: 'A comprehensive suite of tools for ticketing, knowledge base management, and customer support. Blusdesk helps streamline workflows, improve customer satisfaction, and empower support teams.',
+    description: 'A comprehensive suite of tools for ticketing, knowledge base management, and customer support. Blusdesk streamlines workflows and empowers support teams to enhance customer satisfaction.',
     imageUrl: 'https://picsum.photos/seed/blusdesk/1000/800',
     tags: ['Next.js', 'TypeScript', 'SaaS', 'Customer Support', 'Prisma', 'Tailwind CSS'],
     liveUrl: 'https://blusdesk.vercel.app/',
@@ -21,7 +21,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: 'NotesNest – Personal Notes & Resource Hub',
-    description: 'A modern and interactive web-based platform designed to organize, manage, and showcase college study materials in a visually appealing and accessible way. It serves as a centralized hub where a student can store, categorize, and share subject-wise notes, PDFs, and learning resources — integrated directly with Google Drive links.',
+    description: 'A modern web platform for organizing and showcasing college study materials in a visually accessible format. It serves as a centralized hub for notes and resources with direct Google Drive integration.',
     imageUrl: 'https://myimgs.org/storage/images/11767/_.jpeg',
     tags: ['React', 'Web App', 'Education', 'Google Drive', 'Resource Hub'],
     liveUrl: 'https://notes-nest-weld.vercel.app/',
@@ -29,7 +29,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: 'Innerdecode',
-    description: 'A simple, powerful, choice-based system that maps your problem and gives you real solutions—instantly.',
+    description: 'A simple yet powerful choice-based system designed to map user problems and deliver instant, real-world solutions.',
     imageUrl: 'https://myimgs.org/storage/images/11768/Stanford Social Innovation Review - Child Mental….jpeg',
     tags: ['Web Development', 'Learning', 'Programming', 'Frontend'],
     liveUrl: 'https://innerdecode.vercel.app/',
