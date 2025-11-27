@@ -65,14 +65,15 @@ const App: React.FC = () => {
           }));
 
         // Keep the curated projects from static data, as they are key projects.
-        const curatedProjects = PROJECTS.filter(p => p.title.includes('Blusdesk') || p.title.includes('NotesNest') || p.title.includes('Innerdecode'));
+        const curatedProjects = PROJECTS.filter(p => p.title.includes('MediGuardia') || p.title.includes('Blusdesk') || p.title.includes('NotesNest') || p.title.includes('Innerdecode'));
         
         // Combine curated projects with other fetched projects, avoiding duplicates.
         const allProjects = [
           ...curatedProjects,
           ...fetchedProjects.filter(p => {
             const normalizedTitle = p.title.toLowerCase().replace(/[^a-z0-9]/g, '');
-            return !normalizedTitle.includes('notesnest') &&
+            return !normalizedTitle.includes('mediguardia') &&
+                   !normalizedTitle.includes('notesnest') &&
                    !normalizedTitle.includes('blusdesk') &&
                    !normalizedTitle.includes('innerdecode');
           })
@@ -82,7 +83,7 @@ const App: React.FC = () => {
           // Explicitly filter out habitflow just in case it slipped through
           const finalProjects = allProjects.filter(p => !p.title.toLowerCase().includes('habitflow'));
           // Show the best projects
-          setProjects(finalProjects.slice(0, 3)); // Displaying top 3 now, since Portfolio V2 is removed
+          setProjects(finalProjects.slice(0, 4)); // Displaying top 4 now
         }
 
       } catch (error) {

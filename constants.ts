@@ -4,6 +4,14 @@ import { GithubIcon, LinkedinIcon, InstagramIcon, CodeWithHarryIcon, TharunNaikI
 
 export const PROJECTS: Project[] = [
   {
+    title: 'MediGuardia - AI Medical Assistant',
+    description: 'A full-scale AI medical assistant built to bridge the gap between everyday health concerns and reliable guidance. Features an intelligent symptom-checker powered by Gemini AI, medical profile management, medication tracking, and an emergency SOS module. Team: Harsh Vishwakarma (Lead Developer, UI, AI & Architecture) & Abhishek Gaud (Co-developer, Frontend & Support Modules).',
+    imageUrl: 'https://picsum.photos/seed/mediguardia/1000/800',
+    tags: ['AI', 'HealthTech', 'Gemini AI', 'Next.js', 'Vercel'],
+    liveUrl: 'https://mediguardia.vercel.app/#',
+    repoUrl: undefined,
+  },
+  {
     title: 'Blusdesk - All-in-One Business Platform',
     description: 'A comprehensive suite of tools for ticketing, knowledge base management, and customer support. Blusdesk helps streamline workflows, improve customer satisfaction, and empower support teams.',
     imageUrl: 'https://picsum.photos/seed/blusdesk/1000/800',
