@@ -1,4 +1,5 @@
 
+
 import React, { useRef, useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Section } from './components/Section';
@@ -8,6 +9,8 @@ import { PROJECTS, SKILL_CATEGORIES, SOCIAL_LINKS, INSPIRATIONS, GEAR_CATEGORIES
 import { ArrowDownIcon, MailIcon, SunIcon, MoonIcon } from './components/Icons';
 import { ShuffleText } from './components/ShuffleText';
 import type { Project } from './types';
+
+const FILTERS = ['All', 'AI', 'Next.js', 'React', 'SaaS'];
 
 const App: React.FC = () => {
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -31,13 +34,12 @@ const App: React.FC = () => {
   const [isHarshuShuffling, setIsHarshuShuffling] = useState(false);
   const [theme, setTheme] = useState('dark');
 
-  // State for projects, initialized with static data as a fallback
   const [projects, setProjects] = useState<Project[]>(PROJECTS);
+  const [activeFilter, setActiveFilter] = useState('All');
 
   useEffect(() => {
     setHeroAnimated(true);
     
-    // Fetch dynamic project data from GitHub
     const fetchProjects = async () => {
       try {
         const response = await fetch('https://api.github.com/users/meeharshu8685-dot/repos?sort=pushed&direction=desc');
@@ -46,7 +48,7 @@ const App: React.FC = () => {
         }
         const data = await response.json();
         
-        const unwantedRepoNames = ['task-and-finance-manage', 'habitflow-frontend', 'habitflow', 'wikyn', 'inner-code', 'portfolio-v2', 'portfolio']; // Added portfolio-v2 to unwanted
+        const unwantedRepoNames = ['task-and-finance-manage', 'habitflow-frontend', 'habitflow', 'wikyn', 'inner-code'];
 
         const fetchedProjects: Project[] = data
           .filter((repo: any) => 
@@ -64,31 +66,29 @@ const App: React.FC = () => {
             repoUrl: repo.html_url,
           }));
 
-        // Keep the curated projects from static data, as they are key projects.
-        const curatedProjects = PROJECTS.filter(p => p.title.includes('MediGuardia') || p.title.includes('Blusdesk') || p.title.includes('NotesNest') || p.title.includes('Innerdecode'));
+        const curatedProjects = PROJECTS.filter(p => 
+            p.title.includes('MediGuardia') || 
+            p.title.includes('Blusdesk') || 
+            p.title.includes('NotesNest') || 
+            p.title.includes('Innerdecode') ||
+            p.title.includes('Portfolio')
+        );
         
-        // Combine curated projects with other fetched projects, avoiding duplicates.
         const allProjects = [
           ...curatedProjects,
           ...fetchedProjects.filter(p => {
             const normalizedTitle = p.title.toLowerCase().replace(/[^a-z0-9]/g, '');
-            return !normalizedTitle.includes('mediguardia') &&
-                   !normalizedTitle.includes('notesnest') &&
-                   !normalizedTitle.includes('blusdesk') &&
-                   !normalizedTitle.includes('innerdecode');
+            return !curatedProjects.some(cp => cp.title.toLowerCase().replace(/[^a-z0-9]/g, '').includes(normalizedTitle));
           })
         ].filter(Boolean) as Project[];
 
         if (allProjects.length > 0) {
-          // Explicitly filter out habitflow just in case it slipped through
           const finalProjects = allProjects.filter(p => !p.title.toLowerCase().includes('habitflow'));
-          // Show the best projects
-          setProjects(finalProjects.slice(0, 4)); // Displaying top 4 now
+          setProjects(finalProjects.slice(0, 5)); 
         }
 
       } catch (error) {
         console.error('Failed to fetch projects from GitHub. Falling back to static data.', error);
-        // On failure, the component will use the initial state (PROJECTS from constants.ts)
       }
     };
 
@@ -97,8 +97,8 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const shuffleDuration = 5000; // 5 seconds of shuffling
-    const pauseDuration = 10000; // 10 seconds of pause
+    const shuffleDuration = 5000;
+    const pauseDuration = 10000;
     const cycleDuration = shuffleDuration + pauseDuration;
 
     let timeoutId: number;
@@ -111,7 +111,6 @@ const App: React.FC = () => {
       }, shuffleDuration);
     };
     
-    // Delay the start to sync better with hero animation
     const startDelay = setTimeout(() => {
         shuffleCycle();
         intervalId = window.setInterval(shuffleCycle, cycleDuration);
@@ -193,7 +192,11 @@ const App: React.FC = () => {
       setIsButtonShuffling(true);
     }
   };
-
+  
+  const filteredProjects = projects.filter(project => {
+    if (activeFilter === 'All') return true;
+    return project.tags.some(tag => tag.toLowerCase().includes(activeFilter.toLowerCase()));
+  });
 
   return (
     <div className="text-neutral-800 dark:text-neutral-200 transition-colors duration-300">
@@ -319,11 +322,26 @@ const App: React.FC = () => {
 
         {/* Projects Section */}
         <Section ref={projectsRef} id="projects" title="Selected Work">
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            {projects.map((project, index) => (
+          <div className="flex justify-center flex-wrap gap-2 mb-12">
+            {FILTERS.map(filter => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`px-4 py-2 text-sm font-semibold uppercase tracking-wider rounded-full transition-all duration-300 ease-out ${
+                  activeFilter === filter
+                    ? 'bg-black text-white dark:bg-white dark:text-black'
+                    : 'bg-transparent text-neutral-500 dark:text-neutral-400 border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50'
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+          <div key={activeFilter} className="grid md:grid-cols-2 gap-8 lg:gap-12">
+            {filteredProjects.map((project, index) => (
                <div
-                  key={index}
-                  className={`transition-all duration-700 ease-out ${projectsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+                  key={project.title}
+                  className={`transition-all duration-700 ease-out ${projectsVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4'}`}
                   style={{ transitionDelay: `${index * 150}ms` }}
                 >
                   <ProjectCard project={project} />

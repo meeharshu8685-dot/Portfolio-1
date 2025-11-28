@@ -7,7 +7,7 @@ export const PROJECTS: Project[] = [
     title: 'MediGuardia - AI Medical Assistant',
     description: 'An AI-powered medical assistant providing reliable health guidance through an intelligent symptom checker and profile management. Built with Gemini AI to bridge the gap between users and accessible healthcare.',
     imageUrl: 'https://picsum.photos/seed/mediguardia/1000/800',
-    tags: ['AI', 'HealthTech', 'Gemini AI', 'Next.js', 'Vercel'],
+    tags: ['AI', 'HealthTech', 'Gemini AI', 'Next.js', 'Vercel', 'SaaS'],
     liveUrl: 'https://mediguardia.vercel.app/#',
     repoUrl: undefined,
   },
@@ -31,9 +31,17 @@ export const PROJECTS: Project[] = [
     title: 'Innerdecode',
     description: 'A simple yet powerful choice-based system designed to map user problems and deliver instant, real-world solutions.',
     imageUrl: 'https://myimgs.org/storage/images/11768/Stanford Social Innovation Review - Child Mental….jpeg',
-    tags: ['Web Development', 'Learning', 'Programming', 'Frontend'],
+    tags: ['Web Development', 'Learning', 'Programming', 'Frontend', 'React'],
     liveUrl: 'https://innerdecode.vercel.app/',
     repoUrl: undefined,
+  },
+  {
+    title: 'Portfolio',
+    description: 'A dynamic, modern portfolio website built to showcase my projects, skills, and journey as a developer. This is the very site you are viewing now.',
+    imageUrl: 'https://picsum.photos/seed/portfolio/1000/800',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
+    liveUrl: 'https://meeharshu.vercel.app/',
+    repoUrl: 'https://github.com/meeharshu8685-dot/portfolio-v2',
   },
 ];
 
