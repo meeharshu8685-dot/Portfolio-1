@@ -1,4 +1,5 @@
 
+
 import type { Project, SkillCategory, Inspiration, GearCategory, SocialLink } from './types';
 import { GithubIcon, LinkedinIcon, InstagramIcon, CodeWithHarryIcon, TharunNaikIcon, LanguagesIcon, AiIcon, ToolsIcon, ExploringIcon, SoftSkillsIcon, MonitorIcon, KeyboardIcon, BrainCircuitIcon } from './components/Icons';
 
@@ -14,7 +15,7 @@ export const PROJECTS: Project[] = [
   {
     title: 'Blusdesk - All-in-One Business Platform',
     description: 'A comprehensive suite of tools for ticketing, knowledge base management, and customer support. Blusdesk streamlines workflows and empowers support teams to enhance customer satisfaction.',
-    imageUrl: 'https://picsum.photos/seed/blusdesk/1000/800',
+    imageUrl: 'https://image2url.com/images/1764685453042-f20000d4-ea19-4505-8875-b347712f57f2.png',
     tags: ['Next.js', 'TypeScript', 'SaaS', 'Customer Support', 'Prisma', 'Tailwind CSS'],
     liveUrl: 'https://blusdesk.vercel.app/',
     repoUrl: 'https://github.com/meeharshu8685-dot/blusdesk',
@@ -22,7 +23,7 @@ export const PROJECTS: Project[] = [
   {
     title: 'NotesNest – Personal Notes & Resource Hub',
     description: 'A modern web platform for organizing and showcasing college study materials in a visually accessible format. It serves as a centralized hub for notes and resources with direct Google Drive integration.',
-    imageUrl: 'https://myimgs.org/storage/images/11767/_.jpeg',
+    imageUrl: 'https://image2url.com/images/1764684752802-3d042f62-84c1-4c21-881e-cd040f22d7b2.png',
     tags: ['React', 'Web App', 'Education', 'Google Drive', 'Resource Hub'],
     liveUrl: 'https://notes-nest-weld.vercel.app/',
     repoUrl: 'https://github.com/meeharshu8685-dot/notes-nest',
@@ -30,7 +31,7 @@ export const PROJECTS: Project[] = [
   {
     title: 'Innerdecode',
     description: 'A simple yet powerful choice-based system designed to map user problems and deliver instant, real-world solutions.',
-    imageUrl: 'https://myimgs.org/storage/images/11768/Stanford Social Innovation Review - Child Mental….jpeg',
+    imageUrl: 'https://image2url.com/images/1764684385535-69a3487a-f134-4d1a-a6d5-f9e6ecd05fe8.png',
     tags: ['Web Development', 'Learning', 'Programming', 'Frontend', 'React'],
     liveUrl: 'https://innerdecode.vercel.app/',
     repoUrl: undefined,
@@ -38,7 +39,7 @@ export const PROJECTS: Project[] = [
   {
     title: 'Portfolio',
     description: 'A dynamic, modern portfolio website built to showcase my projects, skills, and journey as a developer. This is the very site you are viewing now.',
-    imageUrl: 'https://picsum.photos/seed/portfolio/1000/800',
+    imageUrl: 'https://image2url.com/images/1764685149929-170aa2bd-ffe4-4a7f-a70e-49ad2fea4efe.png',
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     liveUrl: 'https://meeharshu.vercel.app/',
     repoUrl: 'https://github.com/meeharshu8685-dot/portfolio-v2',
