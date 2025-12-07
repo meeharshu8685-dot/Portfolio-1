@@ -1,5 +1,3 @@
-
-
 import type { Project, SkillCategory, Inspiration, GearCategory, SocialLink } from './types';
 import { GithubIcon, LinkedinIcon, InstagramIcon, CodeWithHarryIcon, TharunNaikIcon, LanguagesIcon, AiIcon, ToolsIcon, ExploringIcon, SoftSkillsIcon, MonitorIcon, KeyboardIcon, BrainCircuitIcon } from './components/Icons';
 
@@ -10,6 +8,22 @@ export const PROJECTS: Project[] = [
     imageUrl: 'https://picsum.photos/seed/mediguardia/1000/800',
     tags: ['AI', 'HealthTech', 'Gemini AI', 'Next.js', 'Vercel', 'SaaS'],
     liveUrl: 'https://mediguardia.vercel.app/#',
+    repoUrl: undefined,
+  },
+  {
+    title: 'ClinicWeb-Aura',
+    description: 'A clean, modern clinic website with a premium UI, doctor profiles, and a responsive appointment form. Designed to feel trustworthy and professional for real-world medical use.',
+    imageUrl: 'https://image2url.com/images/1765121494060-5110d474-f375-4da8-bf0d-4253e1e058d4.png',
+    tags: ['UI/UX', 'React', 'Web App', 'HealthTech'],
+    liveUrl: 'https://clinicweb-three.vercel.app/',
+    repoUrl: undefined,
+  },
+  {
+    title: 'Schoolweb',
+    description: 'A modern, illustrative website for a high school, featuring a welcoming design and clear navigation. Built to inspire curiosity and provide key information for students and parents.',
+    imageUrl: 'https://image2url.com/images/1765121435873-aa694b49-8388-42e5-8583-b2ae4d0fcfa3.png',
+    tags: ['UI/UX', 'React', 'Web App', 'Education'],
+    liveUrl: 'https://school-web2-five.vercel.app/',
     repoUrl: undefined,
   },
   {
