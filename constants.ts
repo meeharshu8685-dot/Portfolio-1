@@ -55,7 +55,7 @@ export const PROJECTS: Project[] = [
     description: 'A dynamic, modern portfolio website built to showcase my projects, skills, and journey as a developer. This is the very site you are viewing now.',
     imageUrl: 'https://image2url.com/images/1764685149929-170aa2bd-ffe4-4a7f-a70e-49ad2fea4efe.png',
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
-    liveUrl: 'https://meeharshu.vercel.app/',
+    liveUrl: 'https://iykhrshuu.vercel.app/',
     repoUrl: 'https://github.com/meeharshu8685-dot/portfolio-v2',
   },
 ];
@@ -131,6 +131,6 @@ export const GEAR_CATEGORIES: GearCategory[] = [
 
 export const SOCIAL_LINKS: SocialLink[] = [
     { name: 'GitHub', url: 'https://github.com/meeharshu8685-dot', icon: GithubIcon },
-    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/harsh-vishwakarma-20870b37b', icon: LinkedinIcon },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/search/results/all/?keywords=Harsh%20Vishwakarma%20BITS%20Pilani', icon: LinkedinIcon },
     { name: 'Instagram', url: 'https://www.instagram.com/iyk.hrshu?igsh=am1jb203ZzRnZ2Ry', icon: InstagramIcon },
 ];

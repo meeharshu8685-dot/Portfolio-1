@@ -19,14 +19,17 @@ const App: React.FC = () => {
   const skillsRef = useRef<HTMLDivElement>(null);
   const philosophyRef = useRef<HTMLDivElement>(null);
   const gearRef = useRef<HTMLDivElement>(null);
+  const sparksRef = useRef<HTMLDivElement>(null);
 
   const [isLoading, setIsLoading] = useState(true);
   const [isAppVisible, setIsAppVisible] = useState(false);
+  const [aboutVisible, setAboutVisible] = useState(false);
   const [skillsVisible, setSkillsVisible] = useState(false);
   const [philosophyVisible, setPhilosophyVisible] = useState(false);
   const [projectsVisible, setProjectsVisible] = useState(false);
   const [contactVisible, setContactVisible] = useState(false);
   const [gearVisible, setGearVisible] = useState(false);
+  const [sparksVisible, setSparksVisible] = useState(false);
   
   const [heroAnimated, setHeroAnimated] = useState(false);
   const [isGearSectionOpen, setIsGearSectionOpen] = useState(false);
@@ -135,15 +138,19 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    if (isLoading) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
+            if (entry.target === aboutRef.current) setAboutVisible(true);
             if (entry.target === skillsRef.current) setSkillsVisible(true);
             if (entry.target === philosophyRef.current) setPhilosophyVisible(true);
             if (entry.target === projectsRef.current) setProjectsVisible(true);
             if (entry.target === contactRef.current) setContactVisible(true);
             if (entry.target === gearRef.current) setGearVisible(true);
+            if (entry.target === sparksRef.current) setSparksVisible(true);
             observer.unobserve(entry.target);
           }
         });
@@ -155,7 +162,7 @@ const App: React.FC = () => {
       }
     );
 
-    const refs = [skillsRef, philosophyRef, projectsRef, contactRef, gearRef];
+    const refs = [aboutRef, skillsRef, philosophyRef, projectsRef, contactRef, gearRef, sparksRef];
     refs.forEach(ref => {
       if (ref.current) {
         observer.observe(ref.current);
@@ -169,7 +176,7 @@ const App: React.FC = () => {
         }
       });
     };
-  }, []);
+  }, [isLoading]);
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -245,8 +252,8 @@ const App: React.FC = () => {
           </section>
 
           {/* About Section */}
-          <Section ref={aboutRef} id="about" title="About Me">
-            <div className="max-w-4xl mx-auto">
+          <Section ref={aboutRef} id="about" title="About Me" isSectionVisible={aboutVisible}>
+            <div className={`max-w-4xl mx-auto transition-all duration-700 ease-out ${aboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="text-lg text-neutral-600 dark:text-neutral-300 space-y-4 text-center">
                 <p>
                   Hey there 👋 I’m Harshu — a B.Sc. Computer Science student at BITS Pilani who’s deeply curious about how tech shapes the world.
@@ -265,7 +272,7 @@ const App: React.FC = () => {
           </Section>
           
           {/* Skills Section */}
-          <Section ref={skillsRef} title="My Toolkit">
+          <Section ref={skillsRef} title="My Toolkit" isSectionVisible={skillsVisible}>
             <div className={`max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8 skills-section-container ${skillsVisible ? 'section-is-visible' : ''}`}>
               {SKILL_CATEGORIES.map((category, index) => (
                 <div 
@@ -289,7 +296,7 @@ const App: React.FC = () => {
           </Section>
           
           {/* Philosophy Section */}
-          <Section ref={philosophyRef} title="My Philosophy">
+          <Section ref={philosophyRef} title="My Philosophy" isSectionVisible={philosophyVisible}>
               <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-12 text-center">
                   {[{
                       title: "Simplicity First",
@@ -316,10 +323,12 @@ const App: React.FC = () => {
 
           {/* Inspirations Section */}
           <Section 
+            ref={sparksRef}
             title="My Neural Sparks"
             isCollapsible={true}
             isOpen={isSparksSectionOpen}
             onTitleClick={() => setIsSparksSectionOpen(!isSparksSectionOpen)}
+            isSectionVisible={sparksVisible}
           >
               <div className="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {INSPIRATIONS.map((inspiration) => (
@@ -337,7 +346,7 @@ const App: React.FC = () => {
 
 
           {/* Projects Section */}
-          <Section ref={projectsRef} id="projects" title="Selected Work">
+          <Section ref={projectsRef} id="projects" title="Selected Work" isSectionVisible={projectsVisible}>
             <div className="flex justify-center flex-wrap gap-2 mb-12">
               {FILTERS.map(filter => (
                 <button
@@ -373,6 +382,7 @@ const App: React.FC = () => {
             isCollapsible={true}
             isOpen={isGearSectionOpen}
             onTitleClick={() => setIsGearSectionOpen(!isGearSectionOpen)}
+            isSectionVisible={gearVisible}
           >
             <div className={`max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 gear-section-container ${gearVisible ? 'section-is-visible' : ''}`}>
               {GEAR_CATEGORIES.map((category, index) => (
@@ -393,7 +403,7 @@ const App: React.FC = () => {
           </Section>
 
           {/* Contact Section */}
-          <Section ref={contactRef} id="contact" title="Connect With Me">
+          <Section ref={contactRef} id="contact" title="Connect With Me" isSectionVisible={contactVisible}>
               <div className="text-center max-w-2xl mx-auto">
                   <p className={`text-xl text-neutral-600 dark:text-neutral-300 mb-8 transition-all duration-700 ease-out ${contactVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                       I'm currently seeking new opportunities and I'm always open to a chat. Whether you have a question, a project idea, or just want to say hi, feel free to reach out!
