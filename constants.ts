@@ -1,7 +1,16 @@
+
 import type { Project, SkillCategory, Inspiration, GearCategory, SocialLink } from './types';
 import { GithubIcon, LinkedinIcon, InstagramIcon, CodeWithHarryIcon, TharunNaikIcon, LanguagesIcon, AiIcon, ToolsIcon, ExploringIcon, SoftSkillsIcon, MonitorIcon, KeyboardIcon, BrainCircuitIcon } from './components/Icons';
 
 export const PROJECTS: Project[] = [
+  {
+    title: 'CareSense AI',
+    description: 'Your personal guide to understanding health signals and promoting wellness. We built CareSense AI to help people make calm, informed health decisions before panic escalates.',
+    imageUrl: 'https://picsum.photos/seed/caresenseai/1000/800',
+    tags: ['AI', 'HealthTech', 'Wellness', 'Next.js'],
+    liveUrl: 'https://care-sense-ai-gamma.vercel.app/',
+    repoUrl: undefined,
+  },
   {
     title: 'MediGuardia - AI Medical Assistant',
     description: 'An AI-powered medical assistant providing reliable health guidance through an intelligent symptom checker and profile management. Built with Gemini AI to bridge the gap between users and accessible healthcare.',

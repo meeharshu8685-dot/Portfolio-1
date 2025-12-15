@@ -79,6 +79,7 @@ const App: React.FC = () => {
           }));
 
         const curatedProjects = PROJECTS.filter(p => 
+            p.title.includes('CareSense AI') ||
             p.title.includes('MediGuardia') || 
             p.title.includes('ClinicWeb-Aura') ||
             p.title.includes('Schoolweb') ||
@@ -98,7 +99,7 @@ const App: React.FC = () => {
 
         if (allProjects.length > 0) {
           const finalProjects = allProjects.filter(p => !p.title.toLowerCase().includes('habitflow'));
-          setProjects(finalProjects.slice(0, 7)); 
+          setProjects(finalProjects.slice(0, 8)); 
         }
 
       } catch (error) {
@@ -262,7 +263,7 @@ const App: React.FC = () => {
                   I’m into Artificial Intelligence, Machine Learning, Data Science, and Prompt Engineering — the stuff that makes machines a little smarter (and life a little cooler). Right now, I’m getting started with C language, but there’s a long way to go — and I’m all in for the ride.
                 </p>
                  <p>
-                  I’m kind of an introvert — I love my silence, my space, and the calm that comes with being alone. Still, I’ve got a soft spot for nature, traveling, and my friends, who mean more to me than anything else.
+                  I’m kind of an introvert — I love my silence, and the calm that comes with being alone. Still, I’ve got a soft spot for nature, traveling, and my friends, who mean more to me than anything else.
                 </p>
                 <p>
                   I like keeping things simple: learn more, stay curious, and go with the flow 🌊
@@ -410,8 +411,7 @@ const App: React.FC = () => {
                   </p>
                   <button
                       onClick={handleEmailClick}
-                      className={`inline-flex items-center justify-center text-xl font-bold text-white bg-black dark:text-black dark:bg-white px-10 py-5 group transition-all duration-700 ease-out hover:scale-105 ${contactVisible ? 'opacity-100 translate-y-0 delay-150' : 'opacity-0 translate-y-8'}`}
-                  >
+                      className={`inline-flex items-center justify-center text-xl font-bold text-white bg-black dark:text-black dark:bg-white px-10 py-5 group transition-all duration-700 ease-out hover:scale-105 ${contactVisible ? 'opacity-100 translate-y-0 delay-150' : 'opacity-0 translate-y-8'}`}>
                       <MailIcon className="mr-3 text-white dark:text-black" />
                       Say Hello
                   </button>
