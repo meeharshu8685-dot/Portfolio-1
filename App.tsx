@@ -79,6 +79,7 @@ const App: React.FC = () => {
           }));
 
         const curatedProjects = PROJECTS.filter(p => 
+            p.title.includes('Pathfy') ||
             p.title.includes('CareSense AI') ||
             p.title.includes('MediGuardia') || 
             p.title.includes('ClinicWeb-Aura') ||
@@ -99,7 +100,7 @@ const App: React.FC = () => {
 
         if (allProjects.length > 0) {
           const finalProjects = allProjects.filter(p => !p.title.toLowerCase().includes('habitflow'));
-          setProjects(finalProjects.slice(0, 8)); 
+          setProjects(finalProjects.slice(0, 10)); 
         }
 
       } catch (error) {

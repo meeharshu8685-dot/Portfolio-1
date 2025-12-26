@@ -4,6 +4,14 @@ import { GithubIcon, LinkedinIcon, InstagramIcon, CodeWithHarryIcon, TharunNaikI
 
 export const PROJECTS: Project[] = [
   {
+    title: 'Pathfy',
+    description: 'Convert goals into realistic, dependency-aware, time-bounded execution systems. Built for students and early professionals who want results, not excuses.',
+    imageUrl: 'https://picsum.photos/seed/pathfy/1000/800',
+    tags: ['SaaS', 'AI', 'Productivity', 'Next.js'],
+    liveUrl: 'https://www.pathfy.online/',
+    repoUrl: undefined,
+  },
+  {
     title: 'CareSense AI',
     description: 'Your personal guide to understanding health signals and promoting wellness. We built CareSense AI to help people make calm, informed health decisions before panic escalates.',
     imageUrl: 'https://picsum.photos/seed/caresenseai/1000/800',
